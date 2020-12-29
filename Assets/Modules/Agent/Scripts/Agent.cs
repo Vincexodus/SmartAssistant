@@ -6,6 +6,7 @@ using UnityEngine.VFX;
 public partial class Agent : MonoBehaviour
 {
   public VisualEffect audioVFX;
+  public AudioSource audioSource;
   private const float epsilon = 0.001f;
   
   #region VFX Property IDs

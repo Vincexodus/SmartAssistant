@@ -13,7 +13,7 @@ namespace Audio
     private readonly float[] _smoothedSpectrum;
     private readonly List<float[]> _spectrumHistory = new List<float[]>();
 
-    public SpectrumSmoother(int spectrumSize, int smoothingIterations)
+    public SpectrumSmoother(ref int spectrumSize, ref int smoothingIterations)
     {
       _spectrumSize = spectrumSize;
       _smoothingIterations = smoothingIterations;
