@@ -1,6 +1,7 @@
 /.vscode
 __pycache__/
 /PythonAPI/env/
+/PythonAPI/core/temp/
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #
