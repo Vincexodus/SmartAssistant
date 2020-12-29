@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public partial class Agent : MonoBehaviour
+public partial class Agent
 {
   #region Agent Interaction
   [Header("Agent Interaction")]

@@ -32,13 +32,13 @@ public partial class Agent : MonoBehaviour
     InitVFXPropertyIDs();
 
     InitAgentInteraction();
-    InitAudioVisualizer();
+    // InitAudioVisualizer();
   }
 
   void Update()
   {
     UpdateAgentInteraction();
-    UpdateAudioVisualizer();
+    // UpdateAudioVisualizer();
   }
 
   void InitVFXPropertyIDs()
