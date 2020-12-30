@@ -443,6 +443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioVFX: {fileID: 275060728}
   drawDefaultInspect: 0
+  freqBands: 10
   rotationMultiplier: 500
   rotationVelocity: {x: 0, y: 0}
   velocityDamping: 0.95
@@ -451,16 +452,6 @@ MonoBehaviour:
   showAgentInteraction: 1
   showRotation: 1
   showMouse: 0
-  audioSource: {fileID: 275060732}
-  audioClip: {fileID: 0}
-  fft: 0
-  showAudioSettings: 1
-  showMicSettings: 0
-  showAudioVisualizer: 0
-  audioProfile: 0
-  samples: 512
-  frequencyBands: 8
-  window: 4
 --- !u!82 &275060732
 AudioSource:
   m_ObjectHideFlags: 0
@@ -468,7 +459,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275060726}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0306fb2ed64a66d4cae76f44247ad8d8, type: 3}
@@ -570,6 +561,7 @@ GameObject:
   - component: {fileID: 494107440}
   - component: {fileID: 494107439}
   - component: {fileID: 494107443}
+  - component: {fileID: 494107444}
   m_Layer: 5
   m_Name: BGCanvas
   m_TagString: Untagged
@@ -676,6 +668,24 @@ MonoBehaviour:
   datetimeText: {fileID: 1080077249}
   performance: {fileID: 915368947}
   temperature: {fileID: 65310211}
+--- !u!114 &494107444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494107438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab155b3747f97014da1af6594251a397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKey: bead25a731aaedda8c9f75407ff3d110
+  cityName: Malaysia
+  cityId: 1733045
+  useCoords: 0
+  latitude: 
+  longitude: 
 --- !u!1 &653260035
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,9 +925,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '25<sup>th</sup> <sub>of</sub> Dec 2020
+  m_text: '30<sup>th</sup> <sub>of</sub> Dec 2020
 
-    09:44:57'
+    10:15:50'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
