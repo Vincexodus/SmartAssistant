@@ -161,7 +161,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "30 \xB0C"
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -442,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioVFX: {fileID: 275060728}
+  audioSource: {fileID: 0}
   drawDefaultInspect: 0
   freqBands: 10
   rotationMultiplier: 500
@@ -668,6 +671,7 @@ MonoBehaviour:
   datetimeText: {fileID: 1080077249}
   performance: {fileID: 915368947}
   temperature: {fileID: 65310211}
+  weatherAPI: {fileID: 494107444}
 --- !u!114 &494107444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,6 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab155b3747f97014da1af6594251a397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   apiKey: bead25a731aaedda8c9f75407ff3d110
   cityName: Malaysia
   cityId: 1733045
@@ -925,9 +930,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '30<sup>th</sup> <sub>of</sub> Dec 2020
+  m_text: '31<sup>th</sup> <sub>of</sub> dec 2020
 
-    10:15:50'
+    10:00:36'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}

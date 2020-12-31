@@ -6,7 +6,7 @@ using UnityEngine;
 using System.Collections;
 
 [ExecuteInEditMode]
-public class BGCanvas : MonoBehaviour
+public partial class BGCanvas : MonoBehaviour
 {
   // refering to resource monitor of computer **WinOs only**
   PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
@@ -14,6 +14,8 @@ public class BGCanvas : MonoBehaviour
   public TextMeshProUGUI datetimeText;
   public TextMeshProUGUI performance;
   public TextMeshProUGUI temperature;
+
+  public WeatherAPI weatherAPI;
 
   // Start is called before the first frame update
   void Start()
@@ -23,7 +25,7 @@ public class BGCanvas : MonoBehaviour
     // print("RAM " + SystemInfo.systemMemorySize + " MB");
     datetimeText.richText = true;
     UpdateDateTime();
-    UpdateWeather();
+    InitWeather();
   }
 
   // Update is called once per frame
@@ -58,13 +60,6 @@ public class BGCanvas : MonoBehaviour
     print(ram);
 
     performance.text = $"CPU : {cpu} %\nGPU : 0 \nRAM : {ram} %";
-  }
-
-  void UpdateWeather()
-  {
-    int temp = 30; //example have not utilize openweatherapi
-
-    temperature.text = $"{temp} °C";
   }
 
 }
