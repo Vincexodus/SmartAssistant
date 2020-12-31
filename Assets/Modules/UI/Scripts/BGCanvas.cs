@@ -42,7 +42,7 @@ public class BGCanvas : MonoBehaviour
     string min = DateTime.Now.ToString("mm");
     string hr = DateTime.Now.ToString("hh");
 
-    datetimeText.text = $"{day}<sup>th</sup> <sub>of</sub> {mth} {yr}\n{hr}:{min}:{sec}";
+    datetimeText.text = $"{day}<sup>th</sup> <sub>of</sub> {mth.ToLower()} {yr}\n{hr}:{min}:{sec}";
   }
 
   void UpdatePerformance()
