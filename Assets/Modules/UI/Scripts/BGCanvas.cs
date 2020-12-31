@@ -18,9 +18,9 @@ public class BGCanvas : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    print("VRAM " + SystemInfo.graphicsMemorySize + " MB");
-    print("Processor Frequency " +SystemInfo.processorFrequency + " Mhz");
-    print("RAM " + SystemInfo.systemMemorySize + " MB");
+    // print("VRAM " + SystemInfo.graphicsMemorySize + " MB");
+    // print("Processor Frequency " +SystemInfo.processorFrequency + " Mhz");
+    // print("RAM " + SystemInfo.systemMemorySize + " MB");
     datetimeText.richText = true;
     UpdateDateTime();
     UpdateWeather();
