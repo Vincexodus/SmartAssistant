@@ -1,6 +1,5 @@
 ﻿// Conditions explained: https://openweathermap.org/weather-conditions
-
-public class WeatherStatus
+public class WeatherStatus 
 {
 	public int weatherId;
 	public string main;
@@ -17,6 +16,7 @@ public class WeatherStatus
 
 	public float Fahrenheit () 
   {
+    // formula of conversion
 		return Celsius() *1.8f +32f;
 	}
 }

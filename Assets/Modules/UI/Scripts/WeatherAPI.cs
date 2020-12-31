@@ -25,6 +25,7 @@ public class WeatherAPI : MonoBehaviour
 
 		Api response docs: https://openweathermap.org/current
 	*/
+  public int id;
 
   public string apiKey = "bead25a731aaedda8c9f75407ff3d110"; //Vincent' api key dk bout this confidential or not
   public string cityName;
@@ -62,17 +63,21 @@ public class WeatherAPI : MonoBehaviour
       }
     }
   }
-  WeatherStatus ParseJson(string json)
+
+  // Class to decode json not sure
+  public WeatherStatus ParseJson(string json)
   {
-    WeatherStatus weather = new WeatherStatus();
+    WeatherStatus  weather = new WeatherStatus();
     try
     {
+      //Convert a string representation of number to an integer
       dynamic obj = JObject.Parse(json);
 
+      //assign values of result to variables of WeatherStatus script
       weather.weatherId = obj.weather[0].id;
       weather.main = obj.weather[0].main;
       weather.description = obj.weather[0].description;
-      weather.weatherIcon = obj.weather[0].icon;
+      weather.weatherIcon = obj.weather[0].icon; //image of the condition of weather: sunny, rainny
       weather.temperature = obj.main.temp;
       weather.pressure = obj.main.pressure;
       weather.windSpeed = obj.wind.speed;
@@ -82,16 +87,19 @@ public class WeatherAPI : MonoBehaviour
     }
 
     Debug.Log ("Weather ID : " + weather.weatherId);
-    Debug.Log ("Wind speed : " + weather.windSpeed);
-    Debug.Log ("Temp : " + weather.Celsius());
-    Debug.Log ("Weather desp : " + weather.description);
+    Debug.Log ("Wind speed : " + weather.windSpeed + "m/s");
+    Debug.Log ("Temp : " + weather.Celsius() + "°C");
+    Debug.Log ("Temp : " + weather.Fahrenheit() + "°F");
+    Debug.Log ("Weather description : " + weather.description);
     Debug.Log ("Icon : " + weather.weatherIcon);
-    Debug.Log ("Pressure : " + weather.pressure);
-    
+    Debug.Log ("Pressure : " + weather.pressure + "hPa");
     return weather;
   }
+
   void Start()
   {
     GetRealTimeWeather();
   }
+
+
 }
