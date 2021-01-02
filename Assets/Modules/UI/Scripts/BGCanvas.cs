@@ -12,25 +12,40 @@ public partial class BGCanvas : MonoBehaviour
   PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
   PerformanceCounter ramCounter = new PerformanceCounter("Memory", "Available MBytes");
   public TextMeshProUGUI datetimeText;
+  
+  [Header("Perfomance")]
   public TextMeshProUGUI performance;
+  [Header("Weather")]
   public TextMeshProUGUI temperature;
-
+  public TextMeshProUGUI windspeed;
+  public TextMeshProUGUI description;
+  public TextMeshProUGUI pressure;
   public WeatherAPI weatherAPI;
+  float currentTime = 0f;
+  public float timer = 0f;
+  public float delay = 1800f;
 
   // Start is called before the first frame update
   void Start()
   {
+    InitWeather();
+    currentTime = 0f;
     // print("VRAM " + SystemInfo.graphicsMemorySize + " MB");
     // print("Processor Frequency " +SystemInfo.processorFrequency + " Mhz");
     // print("RAM " + SystemInfo.systemMemorySize + " MB");
     datetimeText.richText = true;
-    UpdateDateTime();
-    InitWeather();
   }
 
   // Update is called once per frame
   void Update()
   {
+    currentTime = 1*Time.time;
+    if(currentTime >= timer)
+    {
+      print("weather reload");
+      // InitWeather();
+      timer += delay;
+    }
     UpdateDateTime();
   }
 

@@ -27,7 +27,6 @@ public class WeatherAPI : MonoBehaviour
 
 		Api response docs: https://openweathermap.org/current
 	*/
-  public int id;
 
   public string apiKey = "bead25a731aaedda8c9f75407ff3d110"; //Vincent' api key dk bout this confidential or not
   public string cityName;
@@ -35,10 +34,9 @@ public class WeatherAPI : MonoBehaviour
   public bool useCoords = false;
   public string latitude;
   public string longitude;
-
   public WeatherStatus weather;
 
-  public void GetRealTimeWeather(ref TextMeshProUGUI temperature)
+  public void GetRealTimeWeather(ref TextMeshProUGUI temperature, ref TextMeshProUGUI windSpeed, ref TextMeshProUGUI description, ref TextMeshProUGUI pressure)
   {
     string uri = "api.openweathermap.org/data/2.5/weather?";
     if(useCoords)
@@ -49,10 +47,10 @@ public class WeatherAPI : MonoBehaviour
       uri += "id=" + cityId + "&appid=" + apiKey;
     }
     // full uri to be input in website
-    StartCoroutine(GetCurrentWeather(uri, temperature));
+    StartCoroutine(GetCurrentWeather(uri, temperature, windSpeed, description, pressure));
+    print(uri);
   }
-
-  IEnumerator GetCurrentWeather(string uri, TextMeshProUGUI temperature)
+  IEnumerator GetCurrentWeather(string uri, TextMeshProUGUI temperature, TextMeshProUGUI windSpeed, TextMeshProUGUI description, TextMeshProUGUI pressure)
   {
     using(UnityWebRequest webRequest = UnityWebRequest.Get(uri))
     {
@@ -63,19 +61,17 @@ public class WeatherAPI : MonoBehaviour
       else
       {
         ParseJson(webRequest.downloadHandler.text);
-        temperature.text = weather.Celsius().ToString();
-        print("Weather ID : " + weather.weatherId);
-        print("Wind speed : " + weather.windSpeed + "m/s");
-        print("Temp : " + weather.Celsius() + "°C");
-        print("Temp : " + weather.Fahrenheit() + "°F");
-        print("Weather description : " + weather.description);
-        print("Icon : " + weather.weatherIcon);
-        print("Pressure : " + weather.pressure + "hPa");
+        temperature.text = $"{weather.Celsius()} °C\n{weather.Fahrenheit()} °F";
+        windSpeed.text = $"{weather.windSpeed.ToString()} m/s";
+        description.text = weather.description;
+        pressure.text = $"{weather.pressure.ToString()} hPa";
+
+        // print("Weather ID : " + weather.weatherId);
+        // print("Icon : " + weather.weatherIcon);
       }
     }
   }
 
-  // Class to decode json not sure
   public void ParseJson(string json)
   {
     try

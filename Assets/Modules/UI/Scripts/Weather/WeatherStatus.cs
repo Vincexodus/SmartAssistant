@@ -4,7 +4,7 @@ public class WeatherStatus
 	public int weatherId;
 	public string main;
 	public string description;
-	public float temperature; // in degree celsius
+	public float temperature; // in degree celsius and farenheit
 	public float pressure;
 	public float windSpeed;
   public string weatherIcon;
