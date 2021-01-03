@@ -20,7 +20,9 @@ namespace Audio
     public float[] freq;
     public int freqSize;
 
-    public float time = 0.0f;
+    private int bandAverage;
+    public int[] bandDistribution;
+    public float[] band;
 
     public void Init()
     {
@@ -39,6 +41,15 @@ namespace Audio
         else break;
       }
       freq = new float[freqSize];
+
+      bandAverage = Mathf.FloorToInt(freqSize/profile.bufferSize); 
+
+      band = new float[profile.bandSize];
+      bandDistribution = new int[profile.bandSize];
+      for (int b=0; b < profile.bandSize - 1; b++)
+        bandDistribution[b] = bandAverage + b*bandAverage;
+      
+      bandDistribution[profile.bandSize - 1] = freqSize;
 
       for (int s=0; s < profile.sampleSize; s++)
         sampleBuffers[s] = new float[profile.bufferSize];
@@ -65,6 +76,20 @@ namespace Audio
 
         freq[f-1] = Mathf.Lerp(average, samples[f], profile.sensitivity);
       }
+    }
+
+    public void GenerateBands()
+    {
+      CreateBand(0, bandDistribution[0], ref band[0]);
+      for (int b=1; b < profile.bandSize; b++)
+        CreateBand(bandDistribution[b-1], bandDistribution[b], ref band[b]);
+    }
+
+    private void CreateBand(int start, int end, ref float totalFreq)
+    {
+      totalFreq = 0.0f;
+      for (int f=start; f < end; f++)
+        totalFreq += freq[f]/bandAverage;
     }
 
   }
