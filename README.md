@@ -46,9 +46,9 @@ This project uses Unity (specifically the Universal Render Pipeline) as the GUI 
 - **Unity URP**: 2020.2 (.0f1) *you can use any 2020.2 version but keep in mind that you will be changing the source code and out of sync from this repository*
 - **Tensorflow**: v2.3.1
 
-## Credits
+## Support Us!
 
-- **Part of Code Structure**: [Jasper Project](https://github.com/jasperproject)
+Support us on [Patreon](https://www.patreon.com/smartassistant)!
 
 ## License
 
