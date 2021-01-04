@@ -35,6 +35,7 @@ Shader "Custom/PyramidFacesCompute"
 
       // Register our functions
       #pragma vertex Vertex
+      // #pragma geometry Geometry
       #pragma fragment Fragment
 
       // Include our logic file
