@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 public class UIconfig : MonoBehaviour
 {
   //switch scenes on button trigger
