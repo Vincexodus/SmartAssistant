@@ -32,8 +32,7 @@ public partial class BGCanvas : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    InitAPI();
-    InitWeather();
+    StartCoroutine(InitWeather());
     currentTime = 0f;
     // print("VRAM " + SystemInfo.graphicsMemorySize + " MB");
     // print("Processor Frequency " +SystemInfo.processorFrequency + " Mhz");

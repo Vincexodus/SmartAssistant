@@ -8,12 +8,14 @@ using TMPro;
 
 public class WeatherAPI : MonoBehaviour
 {
-  //Free package :60 calls/minute and 1,000,000 calls/month
-  // credits to youtube channel : RumpledCode 
   /*
+    SourceCode Reference below:
+    credits to youtube channel : RumpledCode 
+
 		In order to use this API, you need to register on the website.
 
-		Source: https://openweathermap.org
+		API Source: https://openweathermap.org
+    Free package :60 calls/minute and 1,000,000 calls/month
 
     Request by cityname: 
     api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
@@ -25,39 +27,34 @@ public class WeatherAPI : MonoBehaviour
 		Request by lat-long: 
     api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={your api key}
 
-		Api response docs: https://openweathermap.org/current
+		API response docs: https://openweathermap.org/current
 	*/
 
   public string apiKey = "bead25a731aaedda8c9f75407ff3d110"; //Vincent' openweatherapi key dk bout this confidential or not
-  public string cityName;
-  public string cityId;
   public bool useCoords = false;
-  public string latitude;
-  public string longitude;
+  // public string cityName;
+  // public string cityId;
+  // public string latitude;
+  // public string longitude;
   public WeatherStatus weather;
 
   public void GetRealTimeWeather(ref TextMeshProUGUI temperature, ref TextMeshProUGUI windSpeed, ref TextMeshProUGUI description, ref TextMeshProUGUI pressure)
   {
-    float lon = IPAPI.longitude;
-    float lat = IPAPI.latitude;
-    int id = IPAPI.city_Id;
-    string cityName = IPAPI.city_name;
     string uri = "api.openweathermap.org/data/2.5/weather?";
     if(useCoords)
     {
-      uri += "lat=" + lon + "&lon=" + lat + "&appid=" + apiKey;
+      uri += "lat=" + IPAPI.latitude + "&lon=" + IPAPI.longitude + "&appid=" + apiKey;
     }else
     {
-      uri += "id=" + id + "&appid=" + apiKey;
+      uri += "id=" + IPAPI.city_Id + "&appid=" + apiKey;
     }
     // full uri to be input in website
     StartCoroutine(GetCurrentWeather(uri, temperature, windSpeed, description, pressure));
-    print(uri);
-    print(lon);
-    print(lat);
+    print("Current weather API url: " + uri);
   }
   IEnumerator GetCurrentWeather(string uri, TextMeshProUGUI temperature, TextMeshProUGUI windSpeed, TextMeshProUGUI description, TextMeshProUGUI pressure)
   {
+    yield return new WaitForSeconds(2f);
     using(UnityWebRequest webRequest = UnityWebRequest.Get(uri))
     {
       yield return webRequest.SendWebRequest();
