@@ -1,0 +1,17 @@
+tensorflow-gpu
+tqdm
+nltk
+pygame
+numpy<1.19.0
+SpeechRecognition
+pyttsx3
+word2number
+playsound
+mutagen
+transformers
+pylogix
+gTTS
+pydub
+soco
+pyyaml
+semantic

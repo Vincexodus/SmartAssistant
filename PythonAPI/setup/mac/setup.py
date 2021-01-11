@@ -16,3 +16,6 @@ with open("./pipwinrequirements.txt", "r") as f:
   packages = f.read().split("\n")
   for p in packages:
     pipwininstall(p)
+
+import nltk
+nltk.download("punkt")
