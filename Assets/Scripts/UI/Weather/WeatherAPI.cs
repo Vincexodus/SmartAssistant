@@ -28,7 +28,7 @@ public class WeatherAPI : MonoBehaviour
 		Api response docs: https://openweathermap.org/current
 	*/
 
-  public string apiKey = "bead25a731aaedda8c9f75407ff3d110"; //Vincent' api key dk bout this confidential or not
+  public string apiKey = "bead25a731aaedda8c9f75407ff3d110"; //Vincent' openweatherapi key dk bout this confidential or not
   public string cityName;
   public string cityId;
   public bool useCoords = false;
@@ -38,17 +38,23 @@ public class WeatherAPI : MonoBehaviour
 
   public void GetRealTimeWeather(ref TextMeshProUGUI temperature, ref TextMeshProUGUI windSpeed, ref TextMeshProUGUI description, ref TextMeshProUGUI pressure)
   {
+    float lon = IPAPI.longitude;
+    float lat = IPAPI.latitude;
+    int id = IPAPI.city_Id;
+    string cityName = IPAPI.city_name;
     string uri = "api.openweathermap.org/data/2.5/weather?";
     if(useCoords)
     {
-      uri += "lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
+      uri += "lat=" + lon + "&lon=" + lat + "&appid=" + apiKey;
     }else
     {
-      uri += "id=" + cityId + "&appid=" + apiKey;
+      uri += "id=" + id + "&appid=" + apiKey;
     }
     // full uri to be input in website
     StartCoroutine(GetCurrentWeather(uri, temperature, windSpeed, description, pressure));
     print(uri);
+    print(lon);
+    print(lat);
   }
   IEnumerator GetCurrentWeather(string uri, TextMeshProUGUI temperature, TextMeshProUGUI windSpeed, TextMeshProUGUI description, TextMeshProUGUI pressure)
   {

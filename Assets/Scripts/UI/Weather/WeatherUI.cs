@@ -2,6 +2,10 @@ using UnityEngine;
 
 public partial class BGCanvas : MonoBehaviour
 {
+  void InitAPI()
+  {
+    iPAPI.GetIP();
+  }
   void InitWeather()
   {
     weatherAPI.GetRealTimeWeather(ref temperature, ref windspeed, ref description, ref pressure);
