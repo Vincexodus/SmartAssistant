@@ -23,6 +23,7 @@ public class IPAPI : MonoBehaviour
   [HideInInspector] public string ipURL;
 
   [Header("Location Info")]
+  public static string country_name;
   public static string city_name;
   public static int city_Id;
   public static float latitude, longitude;
@@ -74,17 +75,13 @@ public class IPAPI : MonoBehaviour
     {
       //Convert json string to objects
       dynamic obj = JObject.Parse(json);
-      string country  = obj.country_name; // Malaysia
+      country_name  = obj.country_name; // Malaysia
       string continent  = obj.continent_name;
       city_name = obj.city; // Shah Alam
       city_Id = obj.location.geoname_id;
       latitude = obj.latitude;
       longitude = obj.longitude;
 
-      // print(country);
-      // print(city_Id);
-      // print(city_name);
-      // print(latitude+ "  " + longitude);
     } catch(Exception e)
     {
       Debug.Log(e.StackTrace);

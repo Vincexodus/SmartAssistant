@@ -64,7 +64,7 @@ public class WeatherAPI : MonoBehaviour
       else
       {
         ParseJson(webRequest.downloadHandler.text);
-        temperature.text = $"{weather.Celsius()} °C\n{weather.Fahrenheit()} °F";
+        temperature.text = $"{weather.Celsius().ToString("0.0")} °C\n{weather.Fahrenheit().ToString("0.0")} °F";
         windSpeed.text = $"{weather.windSpeed.ToString()} m/s";
         description.text = weather.description;
         pressure.text = $"{weather.pressure.ToString()} hPa";

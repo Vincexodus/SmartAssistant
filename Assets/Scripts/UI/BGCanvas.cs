@@ -24,15 +24,19 @@ public partial class BGCanvas : MonoBehaviour
   public TextMeshProUGUI description;
   public TextMeshProUGUI pressure;
   public WeatherAPI weatherAPI;
-  public IPAPI iPAPI;
   float currentTime = 0f;
   public float timer = 0f;
   public float delay = 1800f;
+
+  [Header("IP info")]
+  public IPAPI iPAPI;
+  public TextMeshProUGUI Location;
 
   // Start is called before the first frame update
   void Start()
   {
     StartCoroutine(InitWeather());
+
     currentTime = 0f;
     // print("VRAM " + SystemInfo.graphicsMemorySize + " MB");
     // print("Processor Frequency " +SystemInfo.processorFrequency + " Mhz");
