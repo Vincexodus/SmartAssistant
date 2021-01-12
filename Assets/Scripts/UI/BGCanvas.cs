@@ -26,27 +26,31 @@ public partial class BGCanvas : MonoBehaviour
   public TextMeshProUGUI description;
   public TextMeshProUGUI pressure;
   public TextMeshProUGUI Location;
-  public 
   float currentTime = 0f;
   public float timer = 0f;
   public float delay = 1800f;
   #endregion
 
-  [Header("Weather Icons")]
-  // main(weather state) - Clear[0], Clouds[1], Drizzle[2], Rain[3], Thunderstorm[4], Snow[5]
-  public Image[] Morning;
-  public Image[] Noon;
-  public Image[] Night;
-
+  [Header("Weather Usage")]
+  string h24 = "00";
+  public Image weatherIcon;
+  public Sprite[] Morning;
+  public Sprite[] Noon;
+  public Sprite[] Night;
+  
   [Header("Additional scripts")]
   public IPAPI iPAPI;
   public WeatherAPI weatherAPI;
+  public int skystate = 0;
 
-  // Start is called before the first frame update
+  //Morning : 5am-11:59am, Noon : 12pm-6:59pm, Night : 7pm-4:59am
+  //05 <= Morning < 12, 12<= Noon < 19, 19 <= Night < 05
+  
   void Start()
   {
-    StartCoroutine(InitWeather());
 
+    UpdateSkyState();
+    StartCoroutine(InitWeather());
     currentTime = 0f;
     // print("VRAM " + SystemInfo.graphicsMemorySize + " MB");
     // print("Processor Frequency " +SystemInfo.processorFrequency + " Mhz");
@@ -65,10 +69,12 @@ public partial class BGCanvas : MonoBehaviour
       timer += delay;
     }
     UpdateDateTime();
+    // UpdateSkyState();
   }
 
   void UpdateDateTime()
   {
+    h24 = DateTime.Now.ToString("HH"); // 24 hour format
     string day = DateTime.Now.ToString("dd");
     string mth = DateTime.Now.ToString("MMM");
     string yr = DateTime.Now.ToString("yyyy");
@@ -80,6 +86,16 @@ public partial class BGCanvas : MonoBehaviour
     datetimeText.text = $"{day}<sup>th</sup> <sub>of</sub> {mth.ToLower()} {yr}\n{hr}:{min}:{sec}";
   }
 
+  void UpdateSkyState()
+  {
+     //0- Morning, 1- Noon, 2-Night
+    int h = int.Parse(h24);
+    if(h >= 5 && h < 12)skystate = 0;
+    else if(h >= 12 && h < 19) skystate = 1;
+    else if(h >= 19 && h < 5) skystate = 2;
+    // else print("Time preset error");
+    print(skystate);
+  }
   void UpdatePerformance()
   {
     cpuCounter.NextValue();

@@ -78,7 +78,6 @@ public class WeatherAPI : MonoBehaviour
         description.text = weather.description;
         pressure.text = $"{weather.pressure.ToString()} hPa";
         weatherMain = weather.main;
-        print(weatherMain);
         // print("Weather ID : " + weather.weatherId);
       }
     }
