@@ -2,18 +2,20 @@
 using System;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
 
 using System.Collections;
 
 [ExecuteInEditMode]
 public partial class BGCanvas : MonoBehaviour
 {
-  #region "Device Performance"
+  #region Device Performance
   // refering to resource monitor of computer **WinOs only**
   PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
   PerformanceCounter ramCounter = new PerformanceCounter("Memory", "Available MBytes");
   #endregion
 
+  #region  Display Texts
   [Header("D&T")]
   public TextMeshProUGUI datetimeText;
   [Header("Perfomance")]
@@ -23,14 +25,22 @@ public partial class BGCanvas : MonoBehaviour
   public TextMeshProUGUI windspeed;
   public TextMeshProUGUI description;
   public TextMeshProUGUI pressure;
-  public WeatherAPI weatherAPI;
+  public TextMeshProUGUI Location;
+  public 
   float currentTime = 0f;
   public float timer = 0f;
   public float delay = 1800f;
+  #endregion
 
-  [Header("IP info")]
+  [Header("Weather Icons")]
+  // main(weather state) - Clear[0], Clouds[1], Drizzle[2], Rain[3], Thunderstorm[4], Snow[5]
+  public Image[] Morning;
+  public Image[] Noon;
+  public Image[] Night;
+
+  [Header("Additional scripts")]
   public IPAPI iPAPI;
-  public TextMeshProUGUI Location;
+  public WeatherAPI weatherAPI;
 
   // Start is called before the first frame update
   void Start()
