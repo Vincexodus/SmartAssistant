@@ -8,11 +8,14 @@ using System.Collections;
 [ExecuteInEditMode]
 public partial class BGCanvas : MonoBehaviour
 {
+  #region "Device Performance"
   // refering to resource monitor of computer **WinOs only**
   PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
   PerformanceCounter ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+  #endregion
+
+  [Header("D&T")]
   public TextMeshProUGUI datetimeText;
-  
   [Header("Perfomance")]
   public TextMeshProUGUI performance;
   [Header("Weather")]
@@ -21,6 +24,7 @@ public partial class BGCanvas : MonoBehaviour
   public TextMeshProUGUI description;
   public TextMeshProUGUI pressure;
   public WeatherAPI weatherAPI;
+  public IPAPI iPAPI;
   float currentTime = 0f;
   public float timer = 0f;
   public float delay = 1800f;
@@ -28,7 +32,7 @@ public partial class BGCanvas : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    InitWeather();
+    StartCoroutine(InitWeather());
     currentTime = 0f;
     // print("VRAM " + SystemInfo.graphicsMemorySize + " MB");
     // print("Processor Frequency " +SystemInfo.processorFrequency + " Mhz");

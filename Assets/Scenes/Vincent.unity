@@ -722,8 +722,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50.58, y: -50.59}
-  m_SizeDelta: {x: 1.2585, y: 0.457}
+  m_AnchoredPosition: {x: 50.80353, y: -50.59}
+  m_SizeDelta: {x: 1.7056, y: 0.457}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &398244020
 CanvasRenderer:
@@ -753,7 +753,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0.38 m/s
+  m_text: 0 m/s
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -875,6 +875,7 @@ GameObject:
   - component: {fileID: 494107439}
   - component: {fileID: 494107443}
   - component: {fileID: 494107444}
+  - component: {fileID: 494107445}
   m_Layer: 5
   m_Name: BGCanvas
   m_TagString: Untagged
@@ -984,6 +985,7 @@ MonoBehaviour:
   description: {fileID: 943028833}
   pressure: {fileID: 1597674283}
   weatherAPI: {fileID: 494107444}
+  iPAPI: {fileID: 494107445}
   timer: 1870
   delay: 1800
 --- !u!114 &494107444
@@ -999,11 +1001,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   apiKey: bead25a731aaedda8c9f75407ff3d110
-  cityName: Malaysia
-  cityId: 1733045
-  useCoords: 0
-  latitude: 
-  longitude: 
+  useCoords: 1
+--- !u!114 &494107445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494107438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6018e4e8bde1d474ca472f2bc9b62354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKey: c6789f32aa819401307f4f3a9be3d2c7
+  IPaddress: 115.164.86.148
+  ipURL: http://api.ipapi.com/115.164.86.148?access_key=c6789f32aa819401307f4f3a9be3d2c7&format=1
 --- !u!1 &529597777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,7 +1675,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: scattered clouds
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -1755,8 +1768,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 51.69, y: -51.04}
-  m_SizeDelta: {x: 3.5212, y: 0.457}
+  m_AnchoredPosition: {x: 51.19023, y: -51.04}
+  m_SizeDelta: {x: 2.5217, y: 0.457}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1040906395
 GameObject:
@@ -1935,9 +1948,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '05<sup>th</sup> <sub>of</sub> jan 2021
+  m_text: '12<sup>th</sup> <sub>of</sub> jan 2021
 
-    10:09:35'
+    12:55:13'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -2428,7 +2441,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1008 hPa
+  m_text: 0 hPa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -2521,8 +2534,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 51.7, y: -51.55}
-  m_SizeDelta: {x: 3.5212, y: 0.457}
+  m_AnchoredPosition: {x: 51.04153, y: -51.55}
+  m_SizeDelta: {x: 2.2043, y: 0.457}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1687258581
 GameObject:
@@ -2879,7 +2892,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "26 \xB0C\n78.8 \xB0F"
+  m_text: "-273.15 \xB0C\n-459.67 \xB0F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
