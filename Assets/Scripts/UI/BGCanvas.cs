@@ -33,6 +33,7 @@ public partial class BGCanvas : MonoBehaviour
 
   [Header("Weather Usage")]
   string h24 = "00";
+  public int skystate = 0;
   public Image weatherIcon;
   public Sprite[] Morning;
   public Sprite[] Noon;
@@ -41,7 +42,6 @@ public partial class BGCanvas : MonoBehaviour
   [Header("Additional scripts")]
   public IPAPI iPAPI;
   public WeatherAPI weatherAPI;
-  public int skystate = 0;
 
   //Morning : 5am-11:59am, Noon : 12pm-6:59pm, Night : 7pm-4:59am
   //05 <= Morning < 12, 12<= Noon < 19, 19 <= Night < 05
@@ -61,6 +61,7 @@ public partial class BGCanvas : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    
     currentTime = 1*Time.time;
     if(currentTime >= timer)
     {
@@ -69,7 +70,7 @@ public partial class BGCanvas : MonoBehaviour
       timer += delay;
     }
     UpdateDateTime();
-    // UpdateSkyState();
+    UpdateSkyState();
   }
 
   void UpdateDateTime()
@@ -90,11 +91,10 @@ public partial class BGCanvas : MonoBehaviour
   {
      //0- Morning, 1- Noon, 2-Night
     int h = int.Parse(h24);
-    if(h >= 5 && h < 12)skystate = 0;
+    if(h >= 5 && h < 12) skystate = 0;
     else if(h >= 12 && h < 19) skystate = 1;
-    else if(h >= 19 && h < 5) skystate = 2;
+    else if(h >= 19 || h < 5) skystate = 2; // 19, 20, 21, 22 ,23, 00, 01, 02, 03, 04:59
     // else print("Time preset error");
-    print(skystate);
   }
   void UpdatePerformance()
   {

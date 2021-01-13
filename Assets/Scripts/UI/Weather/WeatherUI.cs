@@ -6,7 +6,7 @@ public partial class BGCanvas : MonoBehaviour
   {
     iPAPI.GetIP(); // get IP info-Location, Longitude,Latitude etc
 
-    // this may varies with connection
+    // this may varies with connection latency
     yield return new WaitForSeconds(7f); // waiting for data to be assigned to static vars
     Location.text = $"{IPAPI.city_name.ToString()}, {IPAPI.country_name.ToString()}"; // display Ip info
     weatherAPI.weather = new WeatherStatus();
