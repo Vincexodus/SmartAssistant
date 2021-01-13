@@ -37,8 +37,13 @@ public class WeatherAPI : MonoBehaviour
   // public string latitude;
   // public string longitude;
   public WeatherStatus weather;
+  public static string weatherMain;
 
-  public void GetRealTimeWeather(ref TextMeshProUGUI temperature, ref TextMeshProUGUI windSpeed, ref TextMeshProUGUI description, ref TextMeshProUGUI pressure)
+  public void GetRealTimeWeather(
+    ref TextMeshProUGUI temperature, 
+    ref TextMeshProUGUI windSpeed, 
+    ref TextMeshProUGUI description, 
+    ref TextMeshProUGUI pressure)
   {
     string uri = "api.openweathermap.org/data/2.5/weather?";
     if(useCoords)
@@ -52,7 +57,11 @@ public class WeatherAPI : MonoBehaviour
     StartCoroutine(GetCurrentWeather(uri, temperature, windSpeed, description, pressure));
     print("Current weather API url: " + uri);
   }
-  IEnumerator GetCurrentWeather(string uri, TextMeshProUGUI temperature, TextMeshProUGUI windSpeed, TextMeshProUGUI description, TextMeshProUGUI pressure)
+  IEnumerator GetCurrentWeather(string uri, 
+    TextMeshProUGUI temperature, 
+    TextMeshProUGUI windSpeed, 
+    TextMeshProUGUI description, 
+    TextMeshProUGUI pressure)
   {
     yield return new WaitForSeconds(2f);
     using(UnityWebRequest webRequest = UnityWebRequest.Get(uri))
@@ -64,13 +73,12 @@ public class WeatherAPI : MonoBehaviour
       else
       {
         ParseJson(webRequest.downloadHandler.text);
-        temperature.text = $"{weather.Celsius()} °C\n{weather.Fahrenheit()} °F";
+        temperature.text = $"{weather.Celsius().ToString("0.0")} °C\n{weather.Fahrenheit().ToString("0.0")} °F";
         windSpeed.text = $"{weather.windSpeed.ToString()} m/s";
         description.text = weather.description;
         pressure.text = $"{weather.pressure.ToString()} hPa";
-
+        weatherMain = weather.main;
         // print("Weather ID : " + weather.weatherId);
-        // print("Icon : " + weather.weatherIcon);
       }
     }
   }
@@ -85,8 +93,7 @@ public class WeatherAPI : MonoBehaviour
       //assign values of result to variables of WeatherStatus script
       weather.weatherId = obj.weather[0].id;
       weather.main = obj.weather[0].main;
-      weather.description = obj.weather[0].description;
-      weather.weatherIcon = obj.weather[0].icon; //image of the condition of weather: sunny, rainny
+      weather.description = obj.weather[0].description;//image of the condition of weather: sunny, rainny
       weather.temperature = obj.main.temp;
       weather.pressure = obj.main.pressure;
       weather.windSpeed = obj.wind.speed;
