@@ -1,21 +1,22 @@
 import subprocess
-import sys
+import os
+
+print("\nMake sure you have brew installed before continuing the setup.")
+input("press enter to continue...")
 
 def pipinstall(package):
-  subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+  os.system(f"sudo pip3 install {package}")
 
-def pipwininstall(package):
-  subprocess.check_call([sys.executable, "-m", "pipwin", "install", package])
 
 with open("./requirements.txt", "r") as f:
   packages = f.read().split("\n")
   for p in packages:
     pipinstall(p)
 
-with open("./pipwinrequirements.txt", "r") as f:
-  packages = f.read().split("\n")
-  for p in packages:
-    pipwininstall(p)
+os.system(f"brew install ffmpeg")
+os.system(f"brew install portaudio")
+
+pipinstall("pyaudio")
 
 import nltk
 nltk.download("punkt")

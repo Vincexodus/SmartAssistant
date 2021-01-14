@@ -1,6 +1,5 @@
 tensorflow-gpu
 tqdm
-pypiwin32
 nltk
 pygame
 numpy<1.19.0
@@ -15,5 +14,4 @@ gTTS
 pydub
 soco
 pyyaml
-pipwin
 semantic
