@@ -3,7 +3,7 @@ import socket
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(("localhost", 8052))
 
-client.send(b"fuck you server")
+client.send(b"hello server")
 
 while True:
   try:

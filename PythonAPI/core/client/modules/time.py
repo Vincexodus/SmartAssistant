@@ -1,8 +1,24 @@
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
+# The Original Code is Copyright (C) 2020 Voxell Technologies.
+# All rights reserved.
+
 import re
 from datetime import datetime
 import random
 import string
-
 
 PRIORITY = 9
 
@@ -49,9 +65,11 @@ def handle(text, Mic, Agent):
       suffix = "pm"
     else:
       suffix = "am"
-    outputs = [f"It is {hour}:{minute} {suffix} right now.",
-               f"It's {hour}:{minute} {suffix}",
-               f"The time is now {hour}:{minute} {suffix}"]
+    outputs = [
+      f"It is {hour}:{minute} {suffix} right now.",
+      f"It's {hour}:{minute} {suffix}",
+      f"The time is now {hour}:{minute} {suffix}"
+      ]
 
   elif bool(re.search(r'\bday|date|month|year\b', text, re.IGNORECASE)):
     if str(day).endswith("1"):
@@ -63,9 +81,11 @@ def handle(text, Mic, Agent):
     else:
       suffix = "th"
 
-    outputs = [f"Today is {day}{suffix} of {month_dict[month]}, {year}",
-               f"It's {day}{suffix} of {month_dict[month]}, {year}",
-               f"The date is {day}{suffix} of {month_dict[month]}, {year}"]
+    outputs = [
+      f"Today is {day}{suffix} of {month_dict[month]}, {year}",
+      f"It's {day}{suffix} of {month_dict[month]}, {year}",
+      f"The date is {day}{suffix} of {month_dict[month]}, {year}"
+      ]
 
   elif (bool(re.search(r'\bhow long\b', text, re.IGNORECASE)) and \
         bool(re.search(r'\buntil|till\b', text, re.IGNORECASE)) and \
@@ -122,8 +142,10 @@ def handle(text, Mic, Agent):
       sec = ""
 
 
-    outputs = [f"It will take {hr} {mint} {sec}.",
-               f"It's {hr} {mint} {sec}."]
+    outputs = [
+      f"It will take {hr} {mint} {sec}.",
+      f"It's {hr} {mint} {sec}."
+      ]
   if outputs:
     Mic.say(random.choice(outputs))
   else:
@@ -137,11 +159,12 @@ def isValid(text):
     Arguments:
     text -- user-input, typically transcribed speech
   """
-  return bool(re.search(r'\btime|day|date|month|year\b', text, re.IGNORECASE)) or \
-        (bool(re.search(r'\bhow long\b', text, re.IGNORECASE)) and \
-         bool(re.search(r'\buntil|till\b', text, re.IGNORECASE)) and \
-         bool(re.search(r'\bclock|p.m.|a.m.|pm|am|:|morning|dawn|evening|night|afternoon|noon|midday|tomorrow\b',
-              text, re.IGNORECASE)))
+  return bool(re.search(r'\btime|day|date|month|year\b', text, re.IGNORECASE)) or (
+          bool(re.search(r'\bhow long\b', text, re.IGNORECASE)) and \
+          bool(re.search(r'\buntil|till\b', text, re.IGNORECASE)) and \
+          bool(re.search(r'\bclock|p.m.|a.m.|pm|am|:|morning|dawn|evening|night|afternoon|noon|midday|tomorrow\b',
+          text, re.IGNORECASE))
+          )
 
 def time_difference(curr_time, tar_time):
   ch, cm, cs = curr_time
