@@ -68,7 +68,7 @@ Shader "Custom/PyramidFacesCompute"
       #define SHADOW_CASTER_PASS
 
       // Include our logic file
-      #include "PyramidFaces.hlsl"
+      #include "./PyramidFaces.hlsl"
 
       ENDHLSL
     }
