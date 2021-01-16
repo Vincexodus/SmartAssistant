@@ -39,7 +39,7 @@ Shader "Custom/PyramidFacesCompute"
       #pragma fragment Fragment
 
       // Include our logic file
-      #include "PyramidFaces.hlsl"    
+      #include "./PyramidFaces.hlsl"    
 
       ENDHLSL
     }
