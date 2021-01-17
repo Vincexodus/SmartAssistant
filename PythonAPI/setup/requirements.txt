@@ -1,9 +1,7 @@
 tensorflow-gpu
 tqdm
-pypiwin32
 nltk
 pygame
-numpy<1.19.0
 SpeechRecognition
 pyttsx3
 word2number
@@ -15,6 +13,6 @@ gTTS
 pydub
 soco
 pyyaml
-pipwin
 semantic
 PyDictionary
+tensorflowtts
