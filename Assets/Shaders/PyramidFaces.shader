@@ -39,7 +39,7 @@ Shader "Custom/PyramidFacesCompute"
       #pragma fragment Fragment
 
       // Include our logic file
-      #include "PyramidFaces.hlsl"    
+      #include "./PyramidFaces.hlsl"    
 
       ENDHLSL
     }
@@ -68,7 +68,7 @@ Shader "Custom/PyramidFacesCompute"
       #define SHADOW_CASTER_PASS
 
       // Include our logic file
-      #include "PyramidFaces.hlsl"
+      #include "./PyramidFaces.hlsl"
 
       ENDHLSL
     }

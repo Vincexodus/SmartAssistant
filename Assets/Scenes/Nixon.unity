@@ -462,7 +462,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275060726}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a53a3de68a15f4c4383d10e85450f860, type: 3}
   m_Name: 
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275060726}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e742c687133f24c459f66d10360c5872, type: 3}
   m_Name: 
@@ -718,9 +718,16 @@ MonoBehaviour:
   windspeed: {fileID: 0}
   description: {fileID: 0}
   pressure: {fileID: 0}
-  weatherAPI: {fileID: 0}
+  Location: {fileID: 0}
   timer: 1800
   delay: 1800
+  skystate: 0
+  weatherIcon: {fileID: 0}
+  Morning: []
+  Noon: []
+  Night: []
+  iPAPI: {fileID: 0}
+  weatherAPI: {fileID: 0}
 --- !u!1 &915368946
 GameObject:
   m_ObjectHideFlags: 0

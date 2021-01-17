@@ -32,14 +32,14 @@ def isValid(text):
   # check if text is valid
   return (
     (
-      bool(re.search(r'\bhow |how\'s |what |what\'s \b', text, re.IGNORECASE)) and \
-      bool(re.search(r'\b going| doing\b', text, re.IGNORECASE))
+      bool(re.search(r"\bhow |how\"s |what |what\"s \b", text, re.IGNORECASE)) and \
+      bool(re.search(r"\b going| doing\b", text, re.IGNORECASE))
     ) or \
-    bool(re.search(r'\bstatus\b', text, re.IGNORECASE))
+    bool(re.search(r"\bstatus\b", text, re.IGNORECASE))
   )
 
 
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
   print(isValid("How is eveything going?"))
