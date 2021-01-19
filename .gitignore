@@ -1,5 +1,7 @@
 /.vscode
 __pycache__/
+checkpoints/
+inference/
 /PythonAPI/env/
 /PythonAPI/core/temp/
 
@@ -82,3 +84,5 @@ packages-lock.json
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Tensorflow trained checkpoints and weights
+*.h5

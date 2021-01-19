@@ -41,6 +41,6 @@ def isValid(text):
 
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
   print(isValid("what is earth?"))
 

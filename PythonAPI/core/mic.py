@@ -94,7 +94,7 @@ class Mic(object):
 
     transcripts = self.Agent.Speech.STT(self.wav_file)
     if transcripts:
-      return transcripts[0]["transcript"]
+      return transcripts[0]["transcript"].lower()
     else:
       return None
 
