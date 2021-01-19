@@ -57,6 +57,7 @@ class Agent(Util):
     self.MODULES_PATH = pathways.MODULES_PATH
     self.CLIENT_PATH = pathways.CLIENT_PATH
     self.TEMP_PATH = pathways.TEMP_PATH
+    self.YT_PATH = pathways.YT_PATH
 
     if not os.path.isdir(self.TEMP_PATH): # create temp folder to store temp items
       os.mkdir(self.TEMP_PATH)

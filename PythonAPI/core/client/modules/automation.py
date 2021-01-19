@@ -17,7 +17,7 @@
 
 import os, sys
 import re
-from .logix_control import controller
+from logix_control import controller
 
 def handle(text, mic, profile):
   """
