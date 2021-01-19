@@ -20,12 +20,12 @@ from googleapiclient.discovery import build
 class Youtube_Util(object):
 
   def __init__(self, Agent):
-    self.filepath = Agent.MODULESPATH + "/youtube.apikey"
+    self.filepath = Agent.YT_PATH + "/youtube.apikey"
     self.api_key = open(self.filepath, "r", encoding="utf-8").read()
 
     self.youtube = build("youtube", "v3", developerKey=self.api_key)
 
-  def find_latest_vid(self, channel_name, max_results):
+  def find_latest_video(self, channel_name, max_results):
     #To search and obtain channel id
     channel_search_request = self.youtube.search().list(
       part = "snippet",
@@ -69,12 +69,12 @@ class Youtube_Util(object):
     return(video_response["items"]) 
 
 
-  def filter_video_response(video_response=dict(), filter_type=[]):
+  def filter_video_response(self, video_response=dict(), filter_type=[]):
     """
     filter_video_response(video_response, ["snippet", "title"])
     """
     results = list()
-    for items in video_response["items"]:
+    for items in video_response:
       results.append(items[filter_type[0]][filter_type[1]])
 
     return results

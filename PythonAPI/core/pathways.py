@@ -31,6 +31,7 @@ MODULES_PATH = os.path.join(CLIENT_PATH, "modules")
 # sub modules pathways
 CONTROLLER_PATH = os.path.join(MODULES_PATH, "logix_control")
 DL_PATH = os.path.join(MODULES_PATH, "deep_learning")
+YT_PATH = os.path.join(MODULES_PATH, "youtube")
 
 # sub^2 modules pathways
 CHATBOT_PATH = os.path.join(DL_PATH, "chatbot")

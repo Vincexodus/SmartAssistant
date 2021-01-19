@@ -15,7 +15,7 @@
 # The Original Code is Copyright (C) 2020 Voxell Technologies.
 # All rights reserved.
 
-from .youtube import youtube_utils
+from youtube import youtube_utils
 import re
 
 v = ""
@@ -26,14 +26,24 @@ def handle(text, Mic, Agent):
   Abilities:
   - return youtube data obtained from youtube API
   """
-  remove_words = ["channel", "latest", "uploads", "videos", "video", "upload", "newest", "new"]
+  text = text.lower()
+  remove_words = ["channel", "latest", "uploads", "videos", "video", "upload", "newest", "new", "youtube"]
   for rw in remove_words:
     text = text.replace(rw, "")
-  
+
   yt_util = youtube_utils.Youtube_Util(Agent)
   user_video = yt_util.find_latest_video(text, 20)
-  yt_util.filter_video_response(user_video, ["snippet", "title"] )
-  
+
+  try:
+    video_result = yt_util.filter_video_response(user_video, ["snippet", "title"] )
+
+    latest_vids = ", ".join(video_result[:-1])
+    latest_vids += ",and " + video_result[-1]
+
+    Agent._print2(video_result)
+    Mic.say(f"The latest videos by {text} is {latest_vids}.")
+  except:
+    Mic.say("I am sorry, I can't find any videos related to this channel...")
 
 def isValid(text):
   # check if text is valid
@@ -42,5 +52,5 @@ def isValid(text):
 
 
 if __name__ == '__main__':
-  print(isValid("youtube?"))
+  print(isValid("YouTube"))
   
