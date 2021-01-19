@@ -15,7 +15,7 @@
 # The Original Code is Copyright (C) 2020 Voxell Technologies.
 # All rights reserved.
 
-from youtube import youtube_utils
+from .youtube import youtube_utils
 import re
 
 v = ""
