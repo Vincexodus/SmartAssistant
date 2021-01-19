@@ -1,57 +1,44 @@
-from googleapiclient.discovery import build
-
-uploadId = ""
-channelID = ""
-
-api_key = "AIzaSyBgvuTnJBhDRQBoL02se5GGLKp2jYJwu04"
-
-youtube = build("youtube", "v3", developerKey=api_key)
-
-
-# To extract channel id
-channel_id_request = youtube.channels().list(
-    part = "snippet, contentDetails, id",
-    forUsername = "pewdiepie"
-)
-
-channel_id_response = channel_id_request.execute()
-# print(channel_id_response)
-
-for items in channel_id_response["items"]:
-     channelID = items["id"]
+from urllib import request
+import requests
+from bs4 import BeautifulSoup
+from selenium import webdriver
+import re
 
 
 
-#To search and obtain video id
-channel_search_request = youtube.search().list(
-    order = "date",
-    part = "snippet",
-    channelId = channelID
-)
+CHANNEL_FILTER = "&sp=EgIQAg%253D%253D"
+VIDEO_FILTER = "&sp=EgIQAQ%253D%253D"
 
-vids = []
+# soup = BeautifulSoup(page.content, 'html.parser')
 
-channel_search_response = channel_search_request.execute()
+def search_youtube(query, filter_id):
+  channel_link = "https://www.youtube.com/results?search_query=" + query + filter_id
+  print("search link:", channel_link)
+  request_channel = requests.get(channel_link)
 
-#Group the videos id into list
-for items in channel_search_response["items"]:
-    vids.append(items["id"]["videoId"])
+  # with open("./test.html", "w", encoding="utf-8") as f:
+  #   f.write(request_channel.text)
 
+  # print(request_channel.text)
+  soup = BeautifulSoup("./test.html", "html.parser")
 
-#To obtain video info from video id
-video_request = youtube.videos().list(
-    part =" contentDetails",
-    id = ",".join(vids)
-)
+  # a = channel_soup.select("div ")
 
-video_response = video_request.execute()
+  # main_links = soup.find_all("div", {"id": "info-section"})
+  # print(main_links)
+  links = soup.find_all("div")
+  print(links)
 
-print(video_response)
 '''
-for items in video_response["items"]:
-    title = items["snippet"]["title"]
-    print(f"Title: {title}")
-    views = items["statistics"]["viewCount"]
-    print(f"Views: {views}")
+  for url in links:
+    print(url.get("href"))
+    print()
+  #print(type(channel_soup))
+  # print(a)'''
 
-# print(channel_search_response)'''
+
+
+if __name__ == "__main__":
+  search_youtube("blackpink", CHANNEL_FILTER)
+
+
