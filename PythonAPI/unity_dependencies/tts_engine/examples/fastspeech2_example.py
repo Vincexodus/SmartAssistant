@@ -36,7 +36,7 @@ fastspeech2 = TFAutoModel.from_pretrained(
 melgan_config = AutoConfig.from_pretrained('../melgan/conf/melgan.v1.yaml')
 melgan = TFAutoModel.from_pretrained(
   config=melgan_config,
-  pretrained_path="../melgan/checkpoints/generator-1500000.h5"
+  pretrained_path="../melgan/checkpoints/generator-1670000.h5"
 )
 
 input_text = "how much wood would a woodchuck chuck if a woodchuck could chuck wood?"
