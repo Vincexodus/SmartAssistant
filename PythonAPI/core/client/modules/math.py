@@ -25,11 +25,6 @@ def handle(text, Mic, Agent):
     remove_words = ["count ", "calculator ", "what is "]
     for rw in remove_words:
         text = text.replace(rw, "")
-    #Find INTERGERS that need to be used
-    # ints=re.findall(r"[-+]?\d*\.\d+|\d+", text)
-
-    #Find OPERATORS that need to be used
-    # operators= re.findall(r"[+-/*///^]", text)
 
     # supported operators for Evaluation below
     operators = {ast.Add: op.add, ast.Sub: op.sub, ast.Mult: op.mul,
@@ -73,8 +68,6 @@ def handle(text, Mic, Agent):
 def isValid(text):
   # check if text is valid
   return (bool(re.search(r"\bcalculator|count|what is\b", text, re.IGNORECASE)))
-
-
 
 
 
