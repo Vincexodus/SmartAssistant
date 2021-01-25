@@ -86,3 +86,6 @@ packages-lock.json
 
 # Tensorflow trained checkpoints and weights
 *.h5
+
+# API keys
+*.apikey
