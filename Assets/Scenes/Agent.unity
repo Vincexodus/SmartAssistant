@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 275060728}
   - component: {fileID: 275060732}
   - component: {fileID: 275060730}
-  - component: {fileID: 275060733}
   - component: {fileID: 275060731}
   m_Layer: 0
   m_Name: AudioVisualizer
@@ -444,24 +443,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &275060733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275060726}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e742c687133f24c459f66d10360c5872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sourceMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  pyramidComputeShader: {fileID: 7200000, guid: 258da3c99d8669d4e85572a21cd170a0, type: 3}
-  triToVertComputeShader: {fileID: 7200000, guid: 4f3545f7cf597344ea7d2d0d13a810c2, type: 3}
-  material: {fileID: 2100000, guid: 4305f93114df31a4aaba33377bad06af, type: 2}
-  pyramidHeight: 0.01
-  animationFrequency: 1
 --- !u!1 &1415744962
 GameObject:
   m_ObjectHideFlags: 0
