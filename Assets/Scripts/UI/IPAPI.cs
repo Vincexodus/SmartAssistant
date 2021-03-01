@@ -55,11 +55,10 @@ public class IPAPI : MonoBehaviour
     // full uri to be input in website
 
     StartCoroutine(GetIPinfo(ipURL));
-    print("Current IP address detail url: "+ ipURL);
   }
   IEnumerator GetIPaddress() // get user's IP adress - 000.000.0.000
   {
-    string ipNoUrl = "http://bot.whatismyipaddress.com/";
+    string ipNoUrl = "https://bot.whatismyipaddress.com/";
     using(UnityWebRequest webRequest = UnityWebRequest.Get(ipNoUrl))
     {
       yield return webRequest.SendWebRequest();
@@ -71,6 +70,7 @@ public class IPAPI : MonoBehaviour
         IPaddress = webRequest.downloadHandler.text;
       }
     }
+    
   }
   IEnumerator GetIPinfo(string url) // get user's location, info,etc using IP address
   {

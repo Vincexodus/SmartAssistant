@@ -18,6 +18,7 @@ All rights reserved.
 */
 
 using System;
+using System.Web;
 using System.Collections;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
@@ -27,34 +28,12 @@ using TMPro;
 
 public class WeatherAPI : MonoBehaviour
 {
-  /*
-    SourceCode Reference below:
-    credits to youtube channel : RumpledCode 
-
-		In order to use this API, you need to register on the website.
-
-		API Source: https://openweathermap.org
-    Free package :60 calls/minute and 1,000,000 calls/month
-
-    Request by cityname: 
-    api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-    api.openweathermap.org/data/2.5/weather?q={city name},{state code}&appid={API key}
-
-		Request by cityId: 
-    api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}
-
-		Request by lat-long: 
-    api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={your api key}
-
-		API response docs: https://openweathermap.org/current
-	*/
-
   public string apiKey = "bead25a731aaedda8c9f75407ff3d110"; //Vincent' openweatherapi key dk bout this confidential or not
   public bool useCoords = false;
-  // public string cityName;
-  // public string cityId;
-  // public string latitude;
-  // public string longitude;
+  public string cityName;
+  public string cityId;
+  public string latitude;
+  public string longitude;
   public WeatherStatus weather;
   public static string weatherMain;
 
@@ -74,7 +53,6 @@ public class WeatherAPI : MonoBehaviour
     }
     // full uri to be input in website
     StartCoroutine(GetCurrentWeather(uri, temperature, windSpeed, description, pressure));
-    print("Current weather API url: " + uri);
   }
   IEnumerator GetCurrentWeather(string uri, 
     TextMeshProUGUI temperature, 
