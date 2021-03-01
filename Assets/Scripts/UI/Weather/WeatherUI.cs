@@ -33,7 +33,7 @@ public partial class BGCanvas : MonoBehaviour
   void InitWeather()
   {
     UpdateSkyState();
-    Location.text = $"{WebIP.state}, {WebIP.city}, {WebIP.country}"; // display Ip info
+    location.text = $"{WebIP.state}, {WebIP.city}, {WebIP.country}"; // display Ip info
     IconChange();
     Debug.Log("Icon Updated !");
   }

@@ -40,10 +40,10 @@ public partial class BGCanvas : MonoBehaviour
   public TextMeshProUGUI performance;
   [Header("Weather")]
   public TextMeshProUGUI temperature;
-  public TextMeshProUGUI windspeed, windDirection;
+  public TextMeshProUGUI windSpeed, windDirection;
   public TextMeshProUGUI description;
   public TextMeshProUGUI humidity;
-  public TextMeshProUGUI Location;
+  public TextMeshProUGUI location;
   float currentTime = 0f;
   public float timer = 0f;
   public float delay = 1800f;
@@ -105,7 +105,7 @@ public partial class BGCanvas : MonoBehaviour
     temperature.text = WebIP.temperature + "C";
     description.text = WebIP.description;
     humidity.text = WebIP.humid;
-    windspeed.text = WebIP.windSpeed + "km/h";
+    windSpeed.text = WebIP.windSpeed + "km/h";
     windDirection.text = WebIP.windDir;
     print("weather Updated!");
     InitWeather();
