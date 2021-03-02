@@ -1,3 +1,6 @@
 [submodule "Packages/smartassistant.audiovisualizer"]
 	path = Packages/smartassistant.audiovisualizer
 	url = https://github.com/voxell-tech/smartassistant.audiovisualizer.git
+[submodule "Packages\\smartassistant.core"]
+	path = Packages\\smartassistant.core
+	url = https://github.com/voxell-tech/smartassistant.core.git
