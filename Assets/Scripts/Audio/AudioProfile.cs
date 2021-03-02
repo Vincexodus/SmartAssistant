@@ -34,7 +34,7 @@ namespace Audio
     public int smoothingIterations;
     [Range(5000, 20000)]
     public int freqRange;
-    [Range(10, 100)]
+    [Range(10, 1000)]
     public int bandSize;
   }
 }

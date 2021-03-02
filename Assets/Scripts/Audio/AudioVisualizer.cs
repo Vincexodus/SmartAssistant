@@ -80,6 +80,7 @@ namespace Audio
     {
       for (int f=1; f < freqSize; f++)
       {
+        // samples[f] = Mathf.Sqrt(Mathf.Pow(samples[f], profile.power)) * profile.scale;
         samples[f] = Mathf.Pow(Mathf.Sqrt(samples[f]), profile.power) * profile.scale;
 
         // populate buffers
