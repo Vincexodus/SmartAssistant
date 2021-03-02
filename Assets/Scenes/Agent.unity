@@ -337,16 +337,15 @@ MonoBehaviour:
     channel: 0
     window: 4
     sampleSize: 4096
-    bufferSize: 2
+    bufferSize: 8
     power: 1.5
-    scale: 0.1
-    sensitivity: 0.4
-    smoothingIterations: 0
+    scale: 5
+    sensitivity: 1
+    smoothingIterations: 10
     freqRange: 20000
-    bandSize: 100
-  smoothingIterations: 10
-  width: 0.001
-  xOffset: 0.2
+    bandSize: 1000
+  width: 0.005
+  xOffset: 0
 --- !u!82 &275060732
 AudioSource:
   m_ObjectHideFlags: 0
@@ -368,7 +367,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
