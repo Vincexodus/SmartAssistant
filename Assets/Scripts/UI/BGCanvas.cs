@@ -16,7 +16,6 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 The Original Code is Copyright (C) 2020 Voxell Technologies.
 All rights reserved.
 */
-
 using TMPro;
 using System;
 using System.Diagnostics;
@@ -41,10 +40,10 @@ public partial class BGCanvas : MonoBehaviour
   public TextMeshProUGUI performance;
   [Header("Weather")]
   public TextMeshProUGUI temperature;
-  public TextMeshProUGUI windspeed;
+  public TextMeshProUGUI windSpeed, windDirection;
   public TextMeshProUGUI description;
-  public TextMeshProUGUI pressure;
-  public TextMeshProUGUI Location;
+  public TextMeshProUGUI humidity;
+  public TextMeshProUGUI location;
   float currentTime = 0f;
   public float timer = 0f;
   public float delay = 1800f;
@@ -59,17 +58,14 @@ public partial class BGCanvas : MonoBehaviour
   public Sprite[] Night;
   
   [Header("Additional scripts")]
-  public IPAPI iPAPI;
-  public WeatherAPI weatherAPI;
+  public WebIP web;
 
   //Morning : 5am-11:59am, Noon : 12pm-6:59pm, Night : 7pm-4:59am
   //05 <= Morning < 12, 12<= Noon < 19, 19 <= Night < 05
   
   void Start()
   {
-
-    UpdateSkyState();
-    StartCoroutine(InitWeather());
+    UpdateWeather();
     currentTime = 0f;
     // print("VRAM " + SystemInfo.graphicsMemorySize + " MB");
     // print("Processor Frequency " +SystemInfo.processorFrequency + " Mhz");
@@ -80,7 +76,6 @@ public partial class BGCanvas : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    
     currentTime = 1*Time.time;
     if(currentTime >= timer)
     {
@@ -89,7 +84,6 @@ public partial class BGCanvas : MonoBehaviour
       timer += delay;
     }
     UpdateDateTime();
-    UpdateSkyState();
   }
 
   void UpdateDateTime()
@@ -105,16 +99,18 @@ public partial class BGCanvas : MonoBehaviour
 
     datetimeText.text = $"{day}<sup>th</sup> <sub>of</sub> {mth.ToLower()} {yr}\n{hr}:{min}:{sec}";
   }
-
-  void UpdateSkyState()
+  void UpdateWeather()
   {
-     //0- Morning, 1- Noon, 2-Night
-    int h = int.Parse(h24);
-    if(h >= 5 && h < 12) skystate = 0;
-    else if(h >= 12 && h < 19) skystate = 1;
-    else if(h >= 19 || h < 5) skystate = 2; // 19, 20, 21, 22 ,23, 00, 01, 02, 03, 04:59
-    // else print("Time preset error");
+    web.Main();
+    temperature.text = WebIP.temperature + "C";
+    description.text = WebIP.description;
+    humidity.text = WebIP.humid;
+    windSpeed.text = WebIP.windSpeed + "km/h";
+    windDirection.text = WebIP.windDir;
+    print("weather Updated!");
+    InitWeather();
   }
+  
   void UpdatePerformance()
   {
     cpuCounter.NextValue();
