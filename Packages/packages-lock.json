@@ -178,6 +178,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "jillejr.newtonsoft.json-for-unity": {
+      "version": "https://github.com/jilleJr/Newtonsoft.Json-for-Unity.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "77748af76a9bd02d4cab407681a5c99af0184c27"
+    },
     "smartassistant.voxell.audiovisualizer": {
       "version": "file:smartassistant.audiovisualizer",
       "depth": 0,

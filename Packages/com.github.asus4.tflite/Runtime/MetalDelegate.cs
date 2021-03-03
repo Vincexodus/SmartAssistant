@@ -20,56 +20,56 @@ using TfLiteDelegate = System.IntPtr;
 namespace TensorFlowLite
 {
 #if UNITY_IOS || UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-  /// <summary>
-  /// Metal GPU Delegate
-  /// Available on iOS or macOS
-  /// </summary>
-  public class MetalDelegate : IGpuDelegate
-  {
-    public enum WaitType
+    /// <summary>
+    /// Metal GPU Delegate
+    /// Available on iOS or macOS
+    /// </summary>
+    public class MetalDelegate : IGpuDelegate
     {
-      Passive = 0,
-      Active = 1,
-      DoNotWait = 2,
-      Aggressive = 3,
-    }
+        public enum WaitType
+        {
+            Passive = 0,
+            Active = 1,
+            DoNotWait = 2,
+            Aggressive = 3,
+        }
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct Options
-    {
-      public bool allowPrecisionLoss;
-      public WaitType waitType;
-      public bool enableQuantization;
-    }
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Options
+        {
+            public bool allowPrecisionLoss;
+            public WaitType waitType;
+            public bool enableQuantization;
+        }
 
-    public TfLiteDelegate Delegate { get; private set; }
+        public TfLiteDelegate Delegate { get; private set; }
 
-    public MetalDelegate(Options options)
-    {
-      Delegate = TFLGpuDelegateCreate(ref options);
-    }
+        public MetalDelegate(Options options)
+        {
+            Delegate = TFLGpuDelegateCreate(ref options);
+        }
 
-    public void Dispose()
-    {
-      TFLGpuDelegateDelete(Delegate);
-      Delegate = TfLiteDelegate.Zero;
-    }
+        public void Dispose()
+        {
+            TFLGpuDelegateDelete(Delegate);
+            Delegate = TfLiteDelegate.Zero;
+        }
 
-    #region Externs
+        #region Externs
 
 #if UNITY_IOS && !UNITY_EDITOR
-    private const string TensorFlowLibraryGPU = "__Internal";
+        private const string TensorFlowLibraryGPU = "__Internal";
 #else
-    private const string TensorFlowLibraryGPU = "libtensorflowlite_metal_delegate";
+        private const string TensorFlowLibraryGPU = "libtensorflowlite_metal_delegate";
 #endif // UNITY_IOS && !UNITY_EDITOR
 
-    [DllImport(TensorFlowLibraryGPU)]
-    private static extern unsafe TfLiteDelegate TFLGpuDelegateCreate(ref Options delegateOptions);
+        [DllImport(TensorFlowLibraryGPU)]
+        private static extern unsafe TfLiteDelegate TFLGpuDelegateCreate(ref Options delegateOptions);
 
-    [DllImport(TensorFlowLibraryGPU)]
-    private static extern unsafe void TFLGpuDelegateDelete(TfLiteDelegate gpuDelegate);
+        [DllImport(TensorFlowLibraryGPU)]
+        private static extern unsafe void TFLGpuDelegateDelete(TfLiteDelegate gpuDelegate);
 
-    #endregion
-  }
+        #endregion
+    }
 #endif // UNITY_IOS || UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
 }

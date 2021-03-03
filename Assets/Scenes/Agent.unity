@@ -151,7 +151,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275060726}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -191,7 +191,7 @@ VisualEffect:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275060726}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 3bdc74a180d4b3e40a8983f4962cb315, type: 3}
   m_InitialEventName: OnPlaya
   m_InitialEventNameOverriden: 0
