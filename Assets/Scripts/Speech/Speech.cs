@@ -18,9 +18,12 @@ All rights reserved.
 */
 
 using UnityEngine;
+using TensorFlowLite;
 
 public class Speech : MonoBehaviour
 {
+  private Interpreter _speechInterpreter;
+
   void Start()
   {
   }

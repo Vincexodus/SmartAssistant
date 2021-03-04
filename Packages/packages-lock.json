@@ -185,8 +185,8 @@
       "dependencies": {},
       "hash": "77748af76a9bd02d4cab407681a5c99af0184c27"
     },
-    "smartassistant.voxell.audiovisualizer": {
-      "version": "file:smartassistant.audiovisualizer",
+    "smartassistant.voxell.audio": {
+      "version": "file:smartassistant.audio",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
@@ -198,7 +198,7 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "smartassistant.voxell.audiovisualizer": "0.1.1"
+        "smartassistant.voxell.audio": "0.1.1"
       }
     },
     "com.unity.modules.ai": {
