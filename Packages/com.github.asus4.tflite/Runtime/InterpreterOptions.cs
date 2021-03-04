@@ -24,152 +24,152 @@ using TfLiteDelegate = System.IntPtr;
 
 namespace TensorFlowLite
 {
-    public class InterpreterOptions : IDisposable
+  public class InterpreterOptions : IDisposable
+  {
+    // void (*reporter)(void* user_data, const char* format, va_list args),
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl, SetLastError = true)]
+    private delegate void ErrorReporterDelegate(IntPtr userData, string format, IntPtr argsPtrs);
+
+    internal TfLiteInterpreterOptions nativePtr;
+
+    private List<IGpuDelegate> delegates;
+
+    private int _threads;
+    public int threads
     {
-        // void (*reporter)(void* user_data, const char* format, va_list args),
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, SetLastError = true)]
-        private delegate void ErrorReporterDelegate(IntPtr userData, string format, IntPtr argsPtrs);
+      get => _threads;
+      set
+      {
+        _threads = value;
+        TfLiteInterpreterOptionsSetNumThreads(nativePtr, value);
+      }
+    }
 
-        internal TfLiteInterpreterOptions nativePtr;
-
-        private List<IGpuDelegate> delegates;
-
-        private int _threads;
-        public int threads
-        {
-            get => _threads;
-            set
-            {
-                _threads = value;
-                TfLiteInterpreterOptionsSetNumThreads(nativePtr, value);
-            }
-        }
-
-        private bool _useNNAPI;
-        public bool useNNAPI
-        {
-            get => _useNNAPI;
-            set
-            {
-                _useNNAPI = value;
+    private bool _useNNAPI;
+    public bool useNNAPI
+    {
+      get => _useNNAPI;
+      set
+      {
+        _useNNAPI = value;
 #if UNITY_ANDROID && !UNITY_EDITOR
-                InterpreterExtension.TfLiteInterpreterOptionsSetUseNNAPI(nativePtr, value);
+        InterpreterExtension.TfLiteInterpreterOptionsSetUseNNAPI(nativePtr, value);
 #endif // UNITY_ANDROID && !UNITY_EDITOR
-            }
-        }
+      }
+    }
 
-        public InterpreterOptions()
-        {
-            nativePtr = TfLiteInterpreterOptionsCreate();
-            delegates = new List<IGpuDelegate>();
+    public InterpreterOptions()
+    {
+      nativePtr = TfLiteInterpreterOptionsCreate();
+      delegates = new List<IGpuDelegate>();
 
-            TfLiteInterpreterOptionsSetErrorReporter(nativePtr, OnErrorReporter, IntPtr.Zero);
-        }
+      TfLiteInterpreterOptionsSetErrorReporter(nativePtr, OnErrorReporter, IntPtr.Zero);
+    }
 
-        public void Dispose()
-        {
-            if (nativePtr != IntPtr.Zero)
-            {
-                TfLiteInterpreterOptionsDelete(nativePtr);
-            }
-            foreach (var gpuDelegate in delegates)
-            {
-                gpuDelegate.Dispose();
-            }
-            delegates.Clear();
-        }
+    public void Dispose()
+    {
+      if (nativePtr != IntPtr.Zero)
+      {
+        TfLiteInterpreterOptionsDelete(nativePtr);
+      }
+      foreach (var gpuDelegate in delegates)
+      {
+        gpuDelegate.Dispose();
+      }
+      delegates.Clear();
+    }
 
-        public void AddGpuDelegate()
-        {
-            var gpuDelegate = CreateGpuDelegate();
-            if (gpuDelegate == null) return;
-            TfLiteInterpreterOptionsAddDelegate(nativePtr, gpuDelegate.Delegate);
-            delegates.Add(gpuDelegate);
-        }
+    public void AddGpuDelegate()
+    {
+      var gpuDelegate = CreateGpuDelegate();
+      if (gpuDelegate == null) return;
+      TfLiteInterpreterOptionsAddDelegate(nativePtr, gpuDelegate.Delegate);
+      delegates.Add(gpuDelegate);
+    }
 
-        [AOT.MonoPInvokeCallback(typeof(ErrorReporterDelegate))]
-        private static void OnErrorReporter(System.IntPtr userData, string format, IntPtr args)
-        {
-            // Marshalling va_list as args.
-            // refs:
-            // https://github.com/dotnet/runtime/issues/9316
-            // https://github.com/jeremyVignelles/va-list-interop-demo
+    [AOT.MonoPInvokeCallback(typeof(ErrorReporterDelegate))]
+    private static void OnErrorReporter(System.IntPtr userData, string format, IntPtr args)
+    {
+      // Marshalling va_list as args.
+      // refs:
+      // https://github.com/dotnet/runtime/issues/9316
+      // https://github.com/jeremyVignelles/va-list-interop-demo
 
-            string report;
+      string report;
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
-            // TODO: use vsprintf on windows
-            report = format;
+      // TODO: use vsprintf on windows
+      report = format;
 #else
-            int formatLength = printf(format, args);
-            IntPtr buffer = Marshal.AllocHGlobal(formatLength);
-            sprintf(buffer, format, args);
-            report = Marshal.PtrToStringAnsi(buffer);
-            Marshal.FreeHGlobal(buffer);
+      int formatLength = printf(format, args);
+      IntPtr buffer = Marshal.AllocHGlobal(formatLength);
+      sprintf(buffer, format, args);
+      report = Marshal.PtrToStringAnsi(buffer);
+      Marshal.FreeHGlobal(buffer);
 #endif
-            UnityEngine.Debug.LogWarning($"Interperter Warning: {report}");
-        }
+      UnityEngine.Debug.LogWarning($"Interperter Warning: {report}");
+    }
 
 #pragma warning disable CS0162 // Unreachable code detected 
-        private static IGpuDelegate CreateGpuDelegate()
-        {
+    private static IGpuDelegate CreateGpuDelegate()
+    {
 #if UNITY_ANDROID && !UNITY_EDITOR
-            return new GlDelegate();
+      return new GlDelegate();
 #elif UNITY_IOS || UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-            return new MetalDelegate(new MetalDelegate.Options()
-            {
-                allowPrecisionLoss = false,
-                waitType = MetalDelegate.WaitType.Passive,
-                enableQuantization = true,
-            });
+      return new MetalDelegate(new MetalDelegate.Options()
+      {
+        allowPrecisionLoss = false,
+        waitType = MetalDelegate.WaitType.Passive,
+        enableQuantization = true,
+      });
 #endif
-            UnityEngine.Debug.LogWarning("GPU Delegate is not supported on this platform");
-            return null;
-        }
+      UnityEngine.Debug.LogWarning("GPU Delegate is not supported on this platform");
+      return null;
+    }
 #pragma warning restore CS0162 // Unreachable code detected    
 
 
-        #region Externs
-        private const string TensorFlowLibrary = Interpreter.TensorFlowLibrary;
+    #region Externs
+    private const string TensorFlowLibrary = Interpreter.TensorFlowLibrary;
 
-        [DllImport(TensorFlowLibrary)]
-        private static extern unsafe TfLiteInterpreterOptions TfLiteInterpreterOptionsCreate();
+    [DllImport(TensorFlowLibrary)]
+    private static extern unsafe TfLiteInterpreterOptions TfLiteInterpreterOptionsCreate();
 
-        [DllImport(TensorFlowLibrary)]
-        private static extern unsafe void TfLiteInterpreterOptionsDelete(TfLiteInterpreterOptions options);
+    [DllImport(TensorFlowLibrary)]
+    private static extern unsafe void TfLiteInterpreterOptionsDelete(TfLiteInterpreterOptions options);
 
-        [DllImport(TensorFlowLibrary)]
-        private static extern unsafe void TfLiteInterpreterOptionsSetNumThreads(
-            TfLiteInterpreterOptions options,
-            int num_threads
-        );
+    [DllImport(TensorFlowLibrary)]
+    private static extern unsafe void TfLiteInterpreterOptionsSetNumThreads(
+      TfLiteInterpreterOptions options,
+      int num_threads
+    );
 
-        [DllImport(TensorFlowLibrary)]
-        private static extern unsafe void TfLiteInterpreterOptionsAddDelegate(
-            TfLiteInterpreterOptions options,
-            TfLiteDelegate _delegate);
+    [DllImport(TensorFlowLibrary)]
+    private static extern unsafe void TfLiteInterpreterOptionsAddDelegate(
+      TfLiteInterpreterOptions options,
+      TfLiteDelegate _delegate);
 
-        [DllImport(TensorFlowLibrary, CallingConvention = CallingConvention.Cdecl)]
-        private static extern void TfLiteInterpreterOptionsSetErrorReporter(
-            TfLiteInterpreterOptions options,
-            ErrorReporterDelegate errorReporter,
-            IntPtr user_data);
+    [DllImport(TensorFlowLibrary, CallingConvention = CallingConvention.Cdecl)]
+    private static extern void TfLiteInterpreterOptionsSetErrorReporter(
+      TfLiteInterpreterOptions options,
+      ErrorReporterDelegate errorReporter,
+      IntPtr user_data);
 
 
 #if !UNITY_EDITOR_WIN && !UNITY_STANDALONE_WIN
-        private const string LibCLibrary = "libc";
+    private const string LibCLibrary = "libc";
 
-        [DllImport(LibCLibrary, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-        extern static int printf(
-            [In][MarshalAs(UnmanagedType.LPStr)] string format,
-            IntPtr args);
+    [DllImport(LibCLibrary, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+    extern static int printf(
+      [In][MarshalAs(UnmanagedType.LPStr)] string format,
+      IntPtr args);
 
-        [DllImport(LibCLibrary, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-        extern static int sprintf(
-            IntPtr buffer,
-            [In][MarshalAs(UnmanagedType.LPStr)] string format,
-            IntPtr args);
+    [DllImport(LibCLibrary, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+    extern static int sprintf(
+      IntPtr buffer,
+      [In][MarshalAs(UnmanagedType.LPStr)] string format,
+      IntPtr args);
 #endif // !UNITY_EDITOR_WIN && !UNITY_STANDALONE_WIN
 
-        #endregion // Externs
-    }
+    #endregion // Externs
+  }
 }

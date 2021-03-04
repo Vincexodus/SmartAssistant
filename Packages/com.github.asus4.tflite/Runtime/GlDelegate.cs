@@ -21,49 +21,49 @@ namespace TensorFlowLite
 {
 #if UNITY_ANDROID && !UNITY_EDITOR
 
-    /// <summary>
-    /// the Mirror of TfLiteGpuDelegateOptionsV2
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct Options
+  /// <summary>
+  /// the Mirror of TfLiteGpuDelegateOptionsV2
+  /// </summary>
+  [StructLayout(LayoutKind.Sequential)]
+  public struct Options
+  {
+    int isPrecisionLossAllowed;
+    int inferencePreference;
+    int inferencePriority1;
+    int inferencePriority2;
+    int inferencePriority3;
+    long experimentalFlags;
+    int maxDelegatedPartitions;
+  };
+
+  public class GlDelegate : IGpuDelegate
+  {
+    public TfLiteDelegate Delegate { get; private set; }
+
+    public GlDelegate()
     {
-        int isPrecisionLossAllowed;
-        int inferencePreference;
-        int inferencePriority1;
-        int inferencePriority2;
-        int inferencePriority3;
-        long experimentalFlags;
-        int maxDelegatedPartitions;
-    };
-
-    public class GlDelegate : IGpuDelegate
-    {
-        public TfLiteDelegate Delegate { get; private set; }
-
-        public GlDelegate()
-        {
-            Options options = TfLiteGpuDelegateOptionsV2Default();
-            Delegate = TfLiteGpuDelegateV2Create(ref options);
-        }
-
-        public void Dispose()
-        {
-            TfLiteGpuDelegateV2Delete(Delegate);
-            Delegate = TfLiteDelegate.Zero;
-        }
-
-    #region Externs
-        private const string TensorFlowLibraryGPU = "libtensorflowlite_gpu_delegate";
-
-        [DllImport(TensorFlowLibraryGPU)]
-        private static extern unsafe Options TfLiteGpuDelegateOptionsV2Default();
-
-        [DllImport(TensorFlowLibraryGPU)]
-        private static extern unsafe TfLiteDelegate TfLiteGpuDelegateV2Create(ref Options options);
-
-        [DllImport(TensorFlowLibraryGPU)]
-        private static extern unsafe void TfLiteGpuDelegateV2Delete(TfLiteDelegate gpuDelegate);
-    #endregion // Externs
+      Options options = TfLiteGpuDelegateOptionsV2Default();
+      Delegate = TfLiteGpuDelegateV2Create(ref options);
     }
+
+    public void Dispose()
+    {
+      TfLiteGpuDelegateV2Delete(Delegate);
+      Delegate = TfLiteDelegate.Zero;
+    }
+
+  #region Externs
+    private const string TensorFlowLibraryGPU = "libtensorflowlite_gpu_delegate";
+
+    [DllImport(TensorFlowLibraryGPU)]
+    private static extern unsafe Options TfLiteGpuDelegateOptionsV2Default();
+
+    [DllImport(TensorFlowLibraryGPU)]
+    private static extern unsafe TfLiteDelegate TfLiteGpuDelegateV2Create(ref Options options);
+
+    [DllImport(TensorFlowLibraryGPU)]
+    private static extern unsafe void TfLiteGpuDelegateV2Delete(TfLiteDelegate gpuDelegate);
+  #endregion // Externs
+  }
 #endif // UNITY_ANDROID && !UNITY_EDITOR
 }
