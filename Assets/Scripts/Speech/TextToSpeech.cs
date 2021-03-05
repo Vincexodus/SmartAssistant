@@ -55,7 +55,7 @@ namespace SmartAssistant.Speech.TTS
 
       // initialize speech processor
       // a process of converting text into array of ids representing each letters in the text
-      InitSpeechProcessor();
+      InitTTSProcessor();
     }
 
     /// <summary>
@@ -85,7 +85,7 @@ namespace SmartAssistant.Speech.TTS
     public float[,,] FastspeechInference(string text)
     {
       // resize the input tensors to fit the size of inputIDs
-      int[] inputIDs = TextToSequence(ref text);
+      int[] inputIDs = TextToSequence(text);
       _fastspeechInterpreter.ResizeInputTensor(FastspeechTensor.inputIndices[0], new int[2]{1, inputIDs.Length});
       _fastspeechInterpreter.ResizeInputTensor(FastspeechTensor.inputIndices[1], new int[1]{1});
       _fastspeechInterpreter.ResizeInputTensor(FastspeechTensor.inputIndices[2], new int[1]{1});
