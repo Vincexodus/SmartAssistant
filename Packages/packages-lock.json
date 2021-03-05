@@ -201,6 +201,14 @@
         "smartassistant.voxell.audio": "0.1.1"
       }
     },
+    "smartassistant.voxell.speech": {
+      "version": "file:smartassistant.speech",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "smartassistant.voxell.core": "0.1.0"
+      }
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

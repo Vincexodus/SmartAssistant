@@ -357,7 +357,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4ed423072d0567848a91c362ce4fdae7, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -528,10 +528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668ff5ca54c330443a444fb0cab5987c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapperFilepath: 
+  mapperFilepath: TFLiteModels/TTSEngine/ljspeech_mapper.json
   fastspeechFilepath: TFLiteModels/TTSEngine/fastspeech_quant.tflite
   melganFilepath: TFLiteModels/TTSEngine/melgan_quant.tflite
   speakerID: 1
   speedRatio: 1
-  inputTensorIndices: 000000000100000002000000
-  outputTensorIndices: f60300001a04000062020000

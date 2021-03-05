@@ -77,7 +77,7 @@ def infer(input_text):
   return (interpreter.get_tensor(output_details[0]['index']),
           interpreter.get_tensor(output_details[1]['index']))
 
-input_text = "what the fuck"
+input_text = "What the fuck!"
 
 decoder_output_tflite, mel_output_tflite = infer(input_text)
 print(decoder_output_tflite.shape, mel_output_tflite.shape)
