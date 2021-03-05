@@ -18,6 +18,7 @@
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
+import soundfile as sf
 
 from tensorflow_tts.inference import AutoProcessor
 
@@ -77,7 +78,7 @@ def infer(input_text):
   return (interpreter.get_tensor(output_details[0]['index']),
           interpreter.get_tensor(output_details[1]['index']))
 
-input_text = "What the fuck!"
+input_text = "How much wood could a woodchuck chuck if a woodchuck could chuck wood?"
 
 decoder_output_tflite, mel_output_tflite = infer(input_text)
 print(decoder_output_tflite.shape, mel_output_tflite.shape)
@@ -90,18 +91,18 @@ output_details = interpreter.get_output_details()
 melgan_input_details = melgan.get_input_details()
 melgan_output_details = melgan.get_output_details()
 
-for fast in input_details:
-  print(fast)
-for fast in output_details:
-  print(fast)
+melgan.resize_tensor_input(0, mel_output_tflite.shape)
+melgan.allocate_tensors()
+melgan.set_tensor(melgan_input_details[0]["index"], decoder_output_tflite)
 
-for mel in melgan_input_details:
-  print(mel)
-for mel in melgan_output_details:
-  print(mel)
+melgan.invoke()
 
-# audio_before_tflite = melgan(decoder_output_tflite)[0, :, 0]
-# audio_after_tflite = melgan(mel_output_tflite)[0, :, 0]
+melgan_output = melgan.get_tensor(melgan_output_details[0]["index"])
+audio = melgan_output[0, :, 0]
+print(audio)
+
+sf.write('./audio_after_tflite.wav', audio, 22050, "PCM_16")
+
 
 # visualize_mel_spectrogram(decoder_output_tflite)
 # visualize_mel_spectrogram(mel_output_tflite)

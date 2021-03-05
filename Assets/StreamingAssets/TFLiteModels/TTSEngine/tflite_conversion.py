@@ -52,10 +52,10 @@ fastspeech_concrete_function = fastspeech.inference_tflite.get_concrete_function
 
 converter = tf.lite.TFLiteConverter.from_concrete_functions([fastspeech_concrete_function])
 converter.optimizations = [tf.lite.Optimize.DEFAULT]
-converter.target_spec.supported_ops = [
-  tf.lite.OpsSet.TFLITE_BUILTINS,
-  tf.lite.OpsSet.SELECT_TF_OPS
-  ]
+# converter.target_spec.supported_ops = [
+#   tf.lite.OpsSet.TFLITE_BUILTINS,
+#   tf.lite.OpsSet.SELECT_TF_OPS
+#   ]
 tflite_model = converter.convert()
 
 # Save the TF Lite model.
@@ -70,10 +70,10 @@ melgan_concrete_function = melgan.inference_tflite.get_concrete_function()
 
 converter = tf.lite.TFLiteConverter.from_concrete_functions([melgan_concrete_function])
 converter.optimizations = [tf.lite.Optimize.DEFAULT]
-converter.target_spec.supported_ops = [
-  tf.lite.OpsSet.TFLITE_BUILTINS,
-  tf.lite.OpsSet.SELECT_TF_OPS
-  ]
+# converter.target_spec.supported_ops = [
+#   tf.lite.OpsSet.TFLITE_BUILTINS,
+#   tf.lite.OpsSet.SELECT_TF_OPS
+#   ]
 tflite_model = converter.convert()
 
 # Save the TF Lite model.
