@@ -1,6 +1,6 @@
 I have created a [YouTube playlist for this project.](https://www.youtube.com/watch?v=ncER2nHWTko&list=PLlnBGPe6GFdMxJwR8YXo_GfE1LtnTZfbk)
 
-![Smart Assistant](./Pictures/SmartAssistant.png)
+![Smart Assistant](./Pictures/SALogo.png)
 
 This is a basic overview of the Smart Assistant project:
 ![Plan](./Pictures/Plan.png)
