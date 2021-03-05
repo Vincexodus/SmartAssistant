@@ -32,7 +32,7 @@ def visualize_mel_spectrogram(mels):
   plt.close()
 
 # Load the TFLite model and allocate tensors.
-interpreter = tf.lite.Interpreter(model_path='fastspeech_quant.tflite')
+interpreter = tf.lite.Interpreter(model_path='fastspeech_quant.tflite', num_threads=2)
 melgan = tf.lite.Interpreter(model_path="melgan_quant.tflite")
 
 # Get input and output tensors.
@@ -82,12 +82,23 @@ input_text = "what the fuck"
 decoder_output_tflite, mel_output_tflite = infer(input_text)
 print(decoder_output_tflite.shape, mel_output_tflite.shape)
 
-# for mel in melgan_input_details:
-#   print(mel)
+
+# Get input and output tensors.
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+
+melgan_input_details = melgan.get_input_details()
+melgan_output_details = melgan.get_output_details()
+
 for fast in input_details:
   print(fast)
 for fast in output_details:
   print(fast)
+
+for mel in melgan_input_details:
+  print(mel)
+for mel in melgan_output_details:
+  print(mel)
 
 # audio_before_tflite = melgan(decoder_output_tflite)[0, :, 0]
 # audio_after_tflite = melgan(mel_output_tflite)[0, :, 0]

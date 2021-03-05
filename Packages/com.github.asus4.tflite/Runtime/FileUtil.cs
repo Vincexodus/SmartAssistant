@@ -18,7 +18,9 @@ namespace TensorFlowLite
         path = "file://" + path;
       }
 
-      var request = UnityWebRequest.Get(path);
+      Debug.Log(path);
+
+      UnityWebRequest request = UnityWebRequest.Get(path);
       request.SendWebRequest();
       while (!request.isDone)
       {

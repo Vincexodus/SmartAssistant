@@ -25,31 +25,51 @@ namespace SmartAssistant.Speech.TTS
 {
   public partial class TextToSpeech : MonoBehaviour
   {
-    public string TTSFilepath;
+    public string fastspeechFilepath;
+    public string melganFilepath;
     public int speakerID = 1;
     public float speedRatio = 1.0f;
-    [SerializeField]
-    public InterpreterOptions interpreterOptions;
-    public Interpreter interpreter;
 
-    private Interpreter.TensorInfo[] _inputDetails;
+    internal static class FastspeechTensor
+    {
+      public static readonly int[] inputIndices = new int[3]{0, 1, 2};
+      public static readonly int[] outputIndices = new int[3]{1014, 1050, 610};
+    }
+
+    internal static class MelganTensor
+    {
+      public static readonly int[] inputIndices = new int[1]{0};
+      public static readonly int[] outputIndices = new int[1]{438};
+    }
+
+    private Interpreter _fastspeechInterpreter;
+    private Interpreter _melganInterpreter;
 
     void Start()
     {
-      interpreterOptions = new InterpreterOptions(){threads = 2};
-      interpreter = new Interpreter(FileUtil.LoadFile(TTSFilepath), interpreterOptions);
+      print($"TFLite Version: {Interpreter.GetVersion()}");
+      // initialize tflite fastspeech and melgan Interpreter
+      InterpreterOptions options = new InterpreterOptions() {threads = 4};
+      _fastspeechInterpreter = new Interpreter(FileUtil.LoadFile(fastspeechFilepath), options);
+      _melganInterpreter = new Interpreter(FileUtil.LoadFile(melganFilepath), options);
 
-      for (int d=0; d < 3; d++)
-        _inputDetails[d] = interpreter.GetInputTensorInfo(d);
-
+      // initialize speech processor
+      // a process of converting text into array of ids representing each letters in the text
       InitSpeechProcessor();
     }
 
+    /// <summary>
+    /// Formats inputIDs, speakerID and speedRatio into arrays that is to be used as _fastspeechInterpreter input tensors.
+    /// </summary>
+    /// <param name="inputIDs">input token ids translated from text string letter by letter</param>
+    /// <param name="speakerID">the id of the speaker that we wish to use</param>
+    /// <param name="speedRatio">the speed of the output speech</param>
+    /// <returns>An array of all input data.</returns>
     private Array[] PrepareInput(ref int[] inputIDs, ref int speakerID, ref float speedRatio)
     {
-      Array[] inputData = new Array[_inputDetails.Length];
+      Array[] inputData = new Array[FastspeechTensor.inputIndices.Length];
 
-      int[,] formatedInputIDS = new int[_inputDetails[0].shape[0], _inputDetails[0].shape[1]];
+      int[,] formatedInputIDS = new int[1, inputIDs.Length];
       for (int i=0; i < inputIDs.Length; i++) formatedInputIDS[0, i] = inputIDs[i];
       inputData[0] = formatedInputIDS;
       inputData[1] = new int[1]{speakerID};
@@ -58,21 +78,59 @@ namespace SmartAssistant.Speech.TTS
       return inputData;
     }
 
-    public void TTSInference(string text)
+    /// <summary>
+    /// Inferencing fastspeech tflite model by taking in text and converting them into spectogram
+    /// </summary>
+    /// <param name="text">input text</param>
+    public float[,,] FastspeechInference(string text)
     {
-      // convert text to speech here and play it
+      // resize the input tensors to fit the size of inputIDs
       int[] inputIDs = TextToSequence(ref text);
-      interpreter.ResizeInputTensor(0, new int[]{1, inputIDs.Length});
-      interpreter.ResizeInputTensor(1, new int[]{1});
-      interpreter.ResizeInputTensor(2, new int[]{1});
-      interpreter.AllocateTensors();
+      _fastspeechInterpreter.ResizeInputTensor(FastspeechTensor.inputIndices[0], new int[2]{1, inputIDs.Length});
+      _fastspeechInterpreter.ResizeInputTensor(FastspeechTensor.inputIndices[1], new int[1]{1});
+      _fastspeechInterpreter.ResizeInputTensor(FastspeechTensor.inputIndices[2], new int[1]{1});
 
+      // allocate tensors and set input data
+      _fastspeechInterpreter.AllocateTensors();
       Array[] inputData = PrepareInput(ref inputIDs, ref speakerID, ref speedRatio);
+      for (int d=0; d < FastspeechTensor.inputIndices.Length; d++)
+        _fastspeechInterpreter.SetInputTensorData(FastspeechTensor.inputIndices[d], inputData[d]);
 
-      for (int d=0; d < _inputDetails.Length; d++)
-        interpreter.SetInputTensorData(d, inputData[d]);
+      // run the interpreter
+      _fastspeechInterpreter.Invoke();
 
-      interpreter.Invoke();
+      // obtaining the output from the model
+      int[] outputShape = _fastspeechInterpreter.GetOutputTensorInfo(1).shape;
+      float[,,] outputData = new float[outputShape[0], outputShape[1], outputShape[2]];
+      _fastspeechInterpreter.GetOutputTensorData(FastspeechTensor.outputIndices[1], outputData);
+      return outputData;
+    }
+    
+    /// <summary>
+    /// Inferencing melgan tflite model by converting spectogram to audio
+    /// </summary>
+    /// <param name="spectogram">input spectogram</param>
+    /// <returns></returns>
+    public float[,,] MelganInference(float[,,] spectogram)
+    {
+      // resize input tensors to fit the size of spectogram
+      _melganInterpreter.ResizeInputTensor(MelganTensor.inputIndices[0], new int[3]{
+        spectogram.GetLength(0),
+        spectogram.GetLength(1),
+        spectogram.GetLength(2)});
+
+      // allocate tensors and set input data
+      _melganInterpreter.AllocateTensors();
+      _melganInterpreter.SetInputTensorData(MelganTensor.inputIndices[0], spectogram);
+
+      // run the interpreter
+      _melganInterpreter.Invoke();
+
+      // obtaining the output from the model
+      int[] outputShape = _melganInterpreter.GetOutputTensorInfo(0).shape;
+      float[,,] outputData = new float[outputShape[0], outputShape[1], outputShape[2]];
+      _melganInterpreter.GetOutputTensorData(MelganTensor.outputIndices[0], outputData);
+      return outputData;
     }
   }
 }

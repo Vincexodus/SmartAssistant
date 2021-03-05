@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace SmartAssistant.Speech.TTS
 {
@@ -46,6 +47,7 @@ namespace SmartAssistant.Speech.TTS
 
     private void InitSpeechProcessor()
     {
+      // JsonSerializer
     }
 
     private int[] TextToSequence(ref string text)
@@ -61,13 +63,11 @@ namespace SmartAssistant.Speech.TTS
       return sequence.ToArray();
     }
 
-    // private static int[] _ArpabetToSequence(ref string text)
+    // private static int[] _SymbolsToSequence(ref string symbols)
     // {}
 
-    // private static int[] _SymbolsToSequence(ref string symbols)
-    // {
-    //   // 
-    // }
+    // private static int[] _ArpabetToSequence(ref string text)
+    // {}
 
     private static bool _ShouldKeepSymbol(ref char symbol)
     {
