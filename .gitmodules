@@ -7,3 +7,6 @@
 [submodule "Packages/smartassistant.speech"]
 	path = Packages/smartassistant.speech
 	url = https://github.com/voxell-tech/smartassistant.speech.git
+[submodule "Packages/smartassistant.ux"]
+	path = Packages/smartassistant.ux
+	url = https://github.com/voxell-tech/smartassistant.ux.git
