@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 275060732}
   - component: {fileID: 275060730}
   - component: {fileID: 275060731}
+  - component: {fileID: 275060733}
   m_Layer: 0
   m_Name: AudioVisualizer
   m_TagString: Untagged
@@ -327,7 +328,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275060726}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a53a3de68a15f4c4383d10e85450f860, type: 3}
   m_Name: 
@@ -442,6 +443,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!164 &275060733
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275060726}
+  m_Enabled: 1
+  m_DryLevel: -856
+  m_Room: -1000
+  m_RoomHF: -6000
+  m_DecayTime: 0.17
+  m_DecayHFRatio: 0.1
+  m_ReflectionsLevel: -1204
+  m_ReverbLevel: 207
+  m_ReverbDelay: 0.002
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 2
 --- !u!1 &1415744962
 GameObject:
   m_ObjectHideFlags: 0
