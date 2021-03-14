@@ -39,7 +39,7 @@ melgan = TFAutoModel.from_pretrained(
   pretrained_path="../melgan/checkpoints/generator-1670000.h5"
 )
 
-input_text = "how much wood would a woodchuck chuck if a woodchuck could chuck wood?"
+input_text = "Hello, my name is Vox and I am a smart assistant!"
 input_ids = processor.text_to_sequence(input_text)
 
 # fastspeech2 inference

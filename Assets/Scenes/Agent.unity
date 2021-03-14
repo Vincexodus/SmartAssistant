@@ -137,7 +137,6 @@ GameObject:
   - component: {fileID: 275060732}
   - component: {fileID: 275060730}
   - component: {fileID: 275060731}
-  - component: {fileID: 275060733}
   m_Layer: 0
   m_Name: AudioVisualizer
   m_TagString: Untagged
@@ -443,29 +442,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!164 &275060733
-AudioReverbFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275060726}
-  m_Enabled: 1
-  m_DryLevel: -856
-  m_Room: -1000
-  m_RoomHF: -6000
-  m_DecayTime: 0.17
-  m_DecayHFRatio: 0.1
-  m_ReflectionsLevel: -1204
-  m_ReverbLevel: 207
-  m_ReverbDelay: 0.002
-  m_Diffusion: 100
-  m_Density: 100
-  m_HFReference: 5000
-  m_RoomLF: 0
-  m_LFReference: 250
-  m_ReflectionsDelay: 0
-  m_ReverbPreset: 2
 --- !u!1 &1415744962
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,52 +485,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981f571d14a0b4b42964956e367ada2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1599897164
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1599897165}
-  - component: {fileID: 1599897166}
-  m_Layer: 0
-  m_Name: TTS
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1599897165
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1599897164}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1599897166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1599897164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 668ff5ca54c330443a444fb0cab5987c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fastspeechFilepath: TFLiteModels/TTSEngine/fastspeech_quant.tflite
-  melganFilepath: TFLiteModels/TTSEngine/melgan_quant.tflite
-  speakerID: 1
-  speedRatio: 1
-  mapperFilepath: TFLiteModels/TTSEngine/ljspeech_mapper.json
-  audioSource: {fileID: 275060732}
