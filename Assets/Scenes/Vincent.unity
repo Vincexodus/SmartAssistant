@@ -1018,15 +1018,13 @@ MonoBehaviour:
   datetimeText: {fileID: 1080077249}
   performance: {fileID: 915368947}
   temperature: {fileID: 1959366220}
-  windSpeed: {fileID: 0}
+  windSpeed: {fileID: 398244021}
   windDirection: {fileID: 1598696738}
   description: {fileID: 943028833}
   humidity: {fileID: 1597674283}
   location: {fileID: 1548165512}
-  currentTime: 580.4188
   timer: 1870
   delay: 1800
-  h24: 22
   skystate: 2
   weatherIcon: {fileID: 2046543995}
   Morning:
@@ -1967,9 +1965,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '08<sup>th</sup> <sub>of</sub> mar 2021
+  m_text: '15<sup>th</sup> <sub>of</sub> mar 2021
 
-    10:25:28'
+    09:52:21'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -2646,7 +2644,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 58%
+  m_text: 94%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -3231,7 +3229,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "31\xB0 C"
+  m_text: "27\xB0 C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
