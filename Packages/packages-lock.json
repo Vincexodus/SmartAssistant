@@ -209,6 +209,12 @@
         "smartassistant.voxell.core": "0.1.0"
       }
     },
+    "smartassistant.voxell.ui": {
+      "version": "file:smartassistant.ux",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
