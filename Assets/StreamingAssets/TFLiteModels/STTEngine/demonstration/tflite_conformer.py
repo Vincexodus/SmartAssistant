@@ -55,8 +55,9 @@ print("=== OUTPUT ===")
 for detail in output_details:
   print(detail)
 
-print(tf.constant(args.blank, dtype=tf.int32))
-print(tf.zeros([args.num_rnns, args.nstates, 1, args.statesize], dtype=tf.float32))
+print(args.blank)
+print(tf.constant(args.blank, dtype=tf.int32).shape)
+# print(tf.zeros([args.num_rnns, args.nstates, 1, args.statesize], dtype=tf.float32))
 
 tflitemodel.resize_tensor_input(input_details[0]["index"], signal.shape)
 tflitemodel.allocate_tensors()
