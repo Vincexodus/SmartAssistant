@@ -59,8 +59,6 @@ def handle(text, Mic, Agent):
 
 
 
-
-
 def isValid(text):
   # check if text is valid
   return (bool(re.search(r"\bhow much is \b", text, re.IGNORECASE)))
