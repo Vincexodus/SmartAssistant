@@ -143,7 +143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!73398921 &275060727
 VFXRenderer:
   m_ObjectHideFlags: 2
@@ -191,7 +191,7 @@ VisualEffect:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275060726}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 3bdc74a180d4b3e40a8983f4962cb315, type: 3}
   m_InitialEventName: OnPlaya
   m_InitialEventNameOverriden: 0
@@ -303,15 +303,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275060726}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c30dbd046abab4dad818cea82c868a, type: 3}
+  m_Script: {fileID: 11500000, guid: c58fb3443d4922c458379123f78288f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioVFX: {fileID: 275060728}
-  audioSource: {fileID: 275060732}
-  drawDefaultInspect: 0
-  freqBands: 10
   rotationMultiplier: 500
   rotationVelocity: {x: 0, y: 0}
   velocityDamping: 0.95
@@ -320,6 +316,9 @@ MonoBehaviour:
   showAgentInteraction: 1
   showRotation: 1
   showMouse: 0
+  audioVFX: {fileID: 275060728}
+  audioSource: {fileID: 275060732}
+  drawDefaultInspect: 0
 --- !u!114 &275060731
 MonoBehaviour:
   m_ObjectHideFlags: 0
