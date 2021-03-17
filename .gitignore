@@ -74,9 +74,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-# packages-lock will be regenerated
-packages-lock.json
-
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
@@ -86,3 +83,6 @@ packages-lock.json
 
 # Tensorflow trained checkpoints and weights
 *.h5
+
+# API keys
+*.apikey

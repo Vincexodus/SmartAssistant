@@ -1,6 +1,6 @@
-I have created a [playlist for this project.](https://www.youtube.com/watch?v=ncER2nHWTko&list=PLlnBGPe6GFdMxJwR8YXo_GfE1LtnTZfbk)
+I have created a [YouTube playlist for this project.](https://www.youtube.com/watch?v=ncER2nHWTko&list=PLlnBGPe6GFdMxJwR8YXo_GfE1LtnTZfbk)
 
-![Smart Assistant](./Pictures/SmartAssistant.png)
+![Smart Assistant](./Pictures/SALogo.png)
 
 This is a basic overview of the Smart Assistant project:
 ![Plan](./Pictures/Plan.png)
@@ -43,7 +43,7 @@ This project uses Unity (specifically the Universal Render Pipeline) as the GUI 
 ## Build Settings
 
 - **Python**: Python 3.7.6
-- **Unity URP**: 2020.2 (.0f1) *you can use any 2020.2 version but keep in mind that you will be changing the source code and out of sync from this repository*
+- **Unity URP**: 2020.2 .(6f1) *you can use any 2020.2 version but keep in mind that you will be changing the source code and out of sync from this repository*
 - **Tensorflow**: v2.3.1
 
 ## Support Us!

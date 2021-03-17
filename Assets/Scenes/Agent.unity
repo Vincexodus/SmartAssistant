@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 275060728}
   - component: {fileID: 275060732}
   - component: {fileID: 275060730}
-  - component: {fileID: 275060733}
   - component: {fileID: 275060731}
   m_Layer: 0
   m_Name: AudioVisualizer
@@ -144,7 +143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!73398921 &275060727
 VFXRenderer:
   m_ObjectHideFlags: 2
@@ -192,7 +191,7 @@ VisualEffect:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275060726}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 3bdc74a180d4b3e40a8983f4962cb315, type: 3}
   m_InitialEventName: OnPlaya
   m_InitialEventNameOverriden: 0
@@ -304,15 +303,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275060726}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c30dbd046abab4dad818cea82c868a, type: 3}
+  m_Script: {fileID: 11500000, guid: c58fb3443d4922c458379123f78288f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioVFX: {fileID: 275060728}
-  audioSource: {fileID: 275060732}
-  drawDefaultInspect: 0
-  freqBands: 10
   rotationMultiplier: 500
   rotationVelocity: {x: 0, y: 0}
   velocityDamping: 0.95
@@ -321,6 +316,9 @@ MonoBehaviour:
   showAgentInteraction: 1
   showRotation: 1
   showMouse: 0
+  audioVFX: {fileID: 275060728}
+  audioSource: {fileID: 275060732}
+  drawDefaultInspect: 0
 --- !u!114 &275060731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,16 +336,15 @@ MonoBehaviour:
     channel: 0
     window: 4
     sampleSize: 4096
-    bufferSize: 2
-    power: 2.5
-    scale: 2
-    sensitivity: 0.4
-    smoothingIterations: 0
-    freqRange: 10000
-    bandSize: 100
-  smoothingIterations: 10
-  width: 0.001
-  xOffset: 0.2
+    bufferSize: 8
+    power: 1.5
+    scale: 5
+    sensitivity: 1
+    smoothingIterations: 10
+    freqRange: 20000
+    bandSize: 1000
+  width: 0.005
+  xOffset: 0
 --- !u!82 &275060732
 AudioSource:
   m_ObjectHideFlags: 0
@@ -358,18 +355,18 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0306fb2ed64a66d4cae76f44247ad8d8, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 4ed423072d0567848a91c362ce4fdae7, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -444,24 +441,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &275060733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275060726}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e742c687133f24c459f66d10360c5872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sourceMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  pyramidComputeShader: {fileID: 7200000, guid: 258da3c99d8669d4e85572a21cd170a0, type: 3}
-  triToVertComputeShader: {fileID: 7200000, guid: 4f3545f7cf597344ea7d2d0d13a810c2, type: 3}
-  material: {fileID: 2100000, guid: 4305f93114df31a4aaba33377bad06af, type: 2}
-  pyramidHeight: 0.01
-  animationFrequency: 1
 --- !u!1 &1415744962
 GameObject:
   m_ObjectHideFlags: 0

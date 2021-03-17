@@ -1,0 +1,12 @@
+[submodule "Packages/smartassistant.core"]
+	path = Packages/smartassistant.core
+	url = https://github.com/voxell-tech/smartassistant.core.git
+[submodule "Packages/smartassistant.audio"]
+	path = Packages/smartassistant.audio
+	url = https://github.com/voxell-tech/smartassistant.audio.git
+[submodule "Packages/smartassistant.speech"]
+	path = Packages/smartassistant.speech
+	url = https://github.com/voxell-tech/smartassistant.speech.git
+[submodule "Packages/smartassistant.ux"]
+	path = Packages/smartassistant.ux
+	url = https://github.com/voxell-tech/smartassistant.ux.git
