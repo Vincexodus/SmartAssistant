@@ -19,8 +19,8 @@ using TfLiteDelegate = System.IntPtr;
 
 namespace TensorFlowLite
 {
-  public interface IGpuDelegate : IDisposable
-  {
-    TfLiteDelegate Delegate { get; }
-  }
+    public interface IGpuDelegate : IDisposable
+    {
+        TfLiteDelegate Delegate { get; }
+    }
 }
