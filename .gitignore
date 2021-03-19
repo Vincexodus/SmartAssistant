@@ -1,4 +1,4 @@
-/.vscode
+.vscode/
 __pycache__/
 checkpoints/
 inference/
@@ -86,3 +86,7 @@ crashlytics-build.properties
 
 # API keys
 *.apikey
+
+
+# pycaches
+*.pyc
