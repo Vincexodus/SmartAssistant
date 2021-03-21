@@ -34,18 +34,12 @@ namespace SmartAssistant
 
     void Start()
     {
-      Core.Socket.socketClientActions[0] = SocketSpeak;
+      Core.Socket.socketInputActions[0] = textToSpeech.Speak;
     }
 
     // Update is called once per frame
     void Update()
     {
-    }
-
-    public string SocketSpeak(string text)
-    {
-      textToSpeech.Speak(text);
-      return "";
     }
 
     // public void Action1(string input)
