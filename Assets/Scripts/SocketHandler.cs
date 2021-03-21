@@ -20,24 +20,32 @@ All rights reserved.
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using SmartAssistant.Core;
+using SmartAssistant.Speech.TTS;
+using SmartAssistant.Speech.STT;
 
 namespace SmartAssistant
 {
-  public class ActionHandler : MonoBehaviour
+  public class SocketHandler : MonoBehaviour
   {
-    public Core.Socket socket;
+    public Socket socket;
+    public TextToSpeech textToSpeech;
+    public SpeechToText speechToText;
+
     void Start()
     {
-      // socket.socketClientActions = new Action[2];
-      // Action<string> act1 = Action1;
-      Func<string, string> act2 = Action2;
-
-      print(act2.Invoke("Input Test"));
+      Core.Socket.socketClientActions[0] = SocketSpeak;
     }
 
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public string SocketSpeak(string text)
+    {
+      textToSpeech.Speak(text);
+      return "";
     }
 
     // public void Action1(string input)
