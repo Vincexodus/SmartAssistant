@@ -21,13 +21,17 @@ import requests
 import string
 
 PUNCS = list(string.punctuation)
-PUNCS.append("’")
+PUNCS += ["’", "”"]
 text = 1
 ALPHABETS = list(string.ascii_letters)
 result_title = []
 def separete_chap_num(text):
   split_symbol = " - "
-  if ":" in text:
+  is_end = False
+  if "(END)" in text:
+    split_symbol = "(END) - "
+    is_end = True
+  elif ":" in text:
     split_symbol = ": "
   elif "-" in text:
     split_symbol = " - "
@@ -36,8 +40,8 @@ def separete_chap_num(text):
 
   chap = text.split(split_symbol)[0]
   title = text.split(split_symbol)[1].lower()
-
-  chap = re.search("\s+[0-9]+\s+", chap)
+  if is_end:
+    title = "end " + title
 
   return chap, title
 
@@ -48,7 +52,7 @@ def clean_text(text):
   return text.replace(" ", "-")
 
 def search(text, result_title = []):
-  user_input = 'hidden marriage'
+  user_input = text
   search_input = user_input.replace(" ", "+")
   search = requests.get(f"https://novelfull.com/search?keyword={search_input}")
 
@@ -159,13 +163,13 @@ def handle():
         chap_num_list.append(chap)
         title_info_list.append(title)
     
-        # print(f'chap: {chap} title: {title}')
+        print(f'chap: {chap} title: {title}')
         
       else:
         continue
 
-    for i in chap_num_list:
-      print(int(i))
+    # for i in chap_num_list:
+    #   print(int(i))
 
     
     dictionary = dict(zip(chap_num_list, title_info_list))
