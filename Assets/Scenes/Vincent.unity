@@ -743,7 +743,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3.78km/h
+  m_text: 3.71km/h
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -1052,7 +1052,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 82b7e15256a739d4082d17e88f1687f1, type: 3}
   - {fileID: 21300000, guid: 73c94f214bef748439a26d6fbc812719, type: 3}
   - {fileID: 21300000, guid: d6418e14925ce6940b10a1b35c9664e5, type: 3}
-  canvas: {fileID: 494107443}
+  h24: 22
 --- !u!114 &494107446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1971,7 +1971,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '25<sup>th</sup> <sub>of</sub> mar 2021
 
-    09:36:42'
+    10:41:25'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -2812,7 +2812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "68\xB0"
+  m_text: N/A
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
