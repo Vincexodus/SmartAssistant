@@ -743,7 +743,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5.54km/h
+  m_text: 3.78km/h
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -901,6 +901,7 @@ GameObject:
   - component: {fileID: 494107439}
   - component: {fileID: 494107443}
   - component: {fileID: 494107446}
+  - component: {fileID: 494107444}
   m_Layer: 5
   m_Name: BGCanvas
   m_TagString: Untagged
@@ -1006,15 +1007,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   datetimeText: {fileID: 1080077249}
   performance: {fileID: 915368947}
+  timer: 1870
+  delay: 1800
+  h24: 21
+  web: {fileID: 494107446}
+  UI: {fileID: 494107444}
+--- !u!114 &494107444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494107438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9c56b536a65774eb9e6df9f3e2affb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   temperature: {fileID: 1959366220}
   windSpeed: {fileID: 398244021}
   windDirection: {fileID: 1598696738}
   description: {fileID: 943028833}
   humidity: {fileID: 1597674283}
   location: {fileID: 1548165512}
-  timer: 1870
-  delay: 1800
-  skystate: 2
   weatherIcon: {fileID: 2046543995}
   Morning:
   - {fileID: 21300000, guid: 72d268a9da37a764cbf0f5754ad57360, type: 3}
@@ -1025,7 +1040,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 58edc8b7384f65140a6ec13ddb485277, type: 3}
   Noon:
   - {fileID: 21300000, guid: 55f3e9ae0d7e2e64b81cf8b98ecad7a1, type: 3}
-  - {fileID: 21300000, guid: 36b7d2fb1f4e3ff4cb2df080bcbfa384, type: 3}
+  - {fileID: 21300000, guid: 55f3e9ae0d7e2e64b81cf8b98ecad7a1, type: 3}
   - {fileID: 21300000, guid: df2baaf859514694ca124b00fc73bcb6, type: 3}
   - {fileID: 21300000, guid: fb39846861205014595e2eecbe46e5f2, type: 3}
   - {fileID: 21300000, guid: 30f2c4acd6ed7d448b24e542c1e7ea80, type: 3}
@@ -1037,7 +1052,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 82b7e15256a739d4082d17e88f1687f1, type: 3}
   - {fileID: 21300000, guid: 73c94f214bef748439a26d6fbc812719, type: 3}
   - {fileID: 21300000, guid: d6418e14925ce6940b10a1b35c9664e5, type: 3}
-  web: {fileID: 494107446}
+  canvas: {fileID: 494107443}
 --- !u!114 &494107446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1681,7 +1696,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: light rain
+  m_text: few clouds
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -1956,7 +1971,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '25<sup>th</sup> <sub>of</sub> mar 2021
 
-    07:01:49'
+    09:36:42'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -2275,6 +2290,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981f571d14a0b4b42964956e367ada2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ipAddress: localhost
+  port: 8052
+  debugLevel: 0
 --- !u!1 &1451331119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,7 +2651,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 89%
+  m_text: 94%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -2794,7 +2812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "160\xB0"
+  m_text: "68\xB0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -3491,7 +3509,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6d2eac19258aa0b458d2a581b5d76c38, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3f82b1e0b32614d409f27b1394977fc5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
