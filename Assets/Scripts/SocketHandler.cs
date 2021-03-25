@@ -17,8 +17,6 @@ The Original Code is Copyright (C) 2020 Voxell Technologies.
 All rights reserved.
 */
 
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using SmartAssistant.Core;
 using SmartAssistant.Speech.TTS;
@@ -34,24 +32,10 @@ namespace SmartAssistant
 
     void Start()
     {
-      Core.Socket.socketInputActions[0] = textToSpeech.Speak;
+      // Socket.socketInputActions[0] = textToSpeech.Speak;
     }
 
-    // Update is called once per frame
     void Update()
-    {
-    }
-
-    // public void Action1(string input)
-    // {
-    //   print("Action 1 called");
-    //   print($"The input is: {input}");
-    // }
-
-    public string Action2(string inputTxt)
-    {
-      print($"The input is: {inputTxt}");
-      return "Test";
-    }
+    {}
   }
 }
