@@ -216,12 +216,6 @@
         "com.unity.render-pipelines.core": "11.0.0"
       }
     },
-    "ga.fuquna.rapidgui": {
-      "version": "file:RapidGUI",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "smartassistant.voxell.audio": {
       "version": "file:smartassistant.audio",
       "depth": 0,
