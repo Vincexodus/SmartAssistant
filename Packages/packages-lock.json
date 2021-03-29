@@ -1,10 +1,11 @@
 {
   "dependencies": {
     "com.github.asus4.tflite": {
-      "version": "file:com.github.asus4.tflite",
+      "version": "https://github.com/asus4/tf-lite-unity-sample.git?path=/Packages/com.github.asus4.tflite",
       "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "371fbd3bab03a3d8464969af4e44e1d41b05c9dd"
     },
     "com.unity.barracuda": {
       "version": "file:barracuda-release",
