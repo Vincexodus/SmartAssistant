@@ -33,7 +33,7 @@ class Mic(object):
     self.active_maxtime = 10
     self.active_timeout = 1
     self.passive_maxtime = 1
-    self.threshold = 1500
+    self.threshold = 50
 
     # configuration for `pyaudio`
     self.CHUNK = CHUNK
@@ -48,6 +48,7 @@ class Mic(object):
   def fetch_threshold(self, data):
     # Get the loudness of the surroundings
     rms = audioop.rms(data, self.CHANNELS)
+    # print(rms)
     # returns True if we think that the sound is loud enough to indicate that a person is talking
     if rms >= self.threshold:
       return True
