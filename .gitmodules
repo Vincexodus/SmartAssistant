@@ -13,9 +13,6 @@
 [submodule "SmartAssistantAPI"]
 	path = SmartAssistantAPI
 	url = https://github.com/voxell-tech/SmartAssistantAPI.git
-[submodule "Packages/barracuda-release"]
-	path = Packages/barracuda-release
-	url = https://github.com/Unity-Technologies/barracuda-release.git
 [submodule "Packages/RapidGUI"]
 	path = Packages/RapidGUI
 	url = https://github.com/fuqunaga/RapidGUI

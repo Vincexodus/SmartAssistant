@@ -16,9 +16,14 @@
 # All rights reserved.
 
 import tensorflow as tf
-# from tensorflow_asr.featurizers.speech_featurizers import read_raw_audio
+import soundfile
 
 tflitemodel = tf.lite.Interpreter(model_path="./deepspeech-0.9.3-models.tflite")
+wav_path = "E:/VoxellDevelopment/UnityProjs/SmartAssistant/Packages/smartassistant.speech/Samples/SpeechExample/AudioClips/1089-134691-0000.wav"
+test_wav = soundfile.read(wav_path)
+test_wav = test_wav[0]
+
+offset = 100
 
 input_details = tflitemodel.get_input_details()
 output_details = tflitemodel.get_output_details()
@@ -29,3 +34,12 @@ for detail in input_details:
 print("=== OUTPUT ===")
 for detail in output_details:
   print(detail)
+
+tflitemodel.allocate_tensors()
+# tflitemodel.set_tensor(379, tf.zeros((1, 2048)))
+# tflitemodel.set_tensor(380, tf.zeros((1, 2048)))
+tflitemodel.set_tensor(348, tf.convert_to_tensor(test_wav[offset:512+offset], dtype=tf.float32) )
+tflitemodel.invoke()
+
+for d in output_details:
+  print(d["name"], tflitemodel.get_tensor(d["index"]))

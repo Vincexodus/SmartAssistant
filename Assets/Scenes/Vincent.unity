@@ -308,6 +308,7 @@ VFXRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -458,21 +459,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 275060726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c30dbd046abab4dad818cea82c868a, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioVFX: {fileID: 275060728}
-  audioSource: {fileID: 0}
-  drawDefaultInspect: 0
-  freqBands: 10
-  rotationMultiplier: 500
-  rotationVelocity: {x: 0, y: 0}
-  velocityDamping: 0.95
-  intensityCoefficient: 0.1
-  intervalTime: 0.01
-  showAgentInteraction: 1
-  showRotation: 1
-  showMouse: 0
 --- !u!82 &275060732
 AudioSource:
   m_ObjectHideFlags: 0
@@ -754,7 +743,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 9.25km/h
+  m_text: 3.71km/h
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -912,6 +901,7 @@ GameObject:
   - component: {fileID: 494107439}
   - component: {fileID: 494107443}
   - component: {fileID: 494107446}
+  - component: {fileID: 494107444}
   m_Layer: 5
   m_Name: BGCanvas
   m_TagString: Untagged
@@ -1017,15 +1007,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   datetimeText: {fileID: 1080077249}
   performance: {fileID: 915368947}
+  timer: 1870
+  delay: 1800
+  h24: 21
+  web: {fileID: 494107446}
+  UI: {fileID: 494107444}
+--- !u!114 &494107444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494107438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9c56b536a65774eb9e6df9f3e2affb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   temperature: {fileID: 1959366220}
   windSpeed: {fileID: 398244021}
   windDirection: {fileID: 1598696738}
   description: {fileID: 943028833}
   humidity: {fileID: 1597674283}
   location: {fileID: 1548165512}
-  timer: 1870
-  delay: 1800
-  skystate: 2
   weatherIcon: {fileID: 2046543995}
   Morning:
   - {fileID: 21300000, guid: 72d268a9da37a764cbf0f5754ad57360, type: 3}
@@ -1036,7 +1040,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 58edc8b7384f65140a6ec13ddb485277, type: 3}
   Noon:
   - {fileID: 21300000, guid: 55f3e9ae0d7e2e64b81cf8b98ecad7a1, type: 3}
-  - {fileID: 21300000, guid: 36b7d2fb1f4e3ff4cb2df080bcbfa384, type: 3}
+  - {fileID: 21300000, guid: 55f3e9ae0d7e2e64b81cf8b98ecad7a1, type: 3}
   - {fileID: 21300000, guid: df2baaf859514694ca124b00fc73bcb6, type: 3}
   - {fileID: 21300000, guid: fb39846861205014595e2eecbe46e5f2, type: 3}
   - {fileID: 21300000, guid: 30f2c4acd6ed7d448b24e542c1e7ea80, type: 3}
@@ -1048,7 +1052,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 82b7e15256a739d4082d17e88f1687f1, type: 3}
   - {fileID: 21300000, guid: 73c94f214bef748439a26d6fbc812719, type: 3}
   - {fileID: 21300000, guid: d6418e14925ce6940b10a1b35c9664e5, type: 3}
-  web: {fileID: 494107446}
+  h24: 22
 --- !u!114 &494107446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1965,9 +1969,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '15<sup>th</sup> <sub>of</sub> mar 2021
+  m_text: '25<sup>th</sup> <sub>of</sub> mar 2021
 
-    09:52:21'
+    10:41:25'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -2286,6 +2290,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981f571d14a0b4b42964956e367ada2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ipAddress: localhost
+  port: 8052
+  debugLevel: 0
 --- !u!1 &1451331119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2510,7 +2517,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Kuala Lumpur, Malaysia
+  m_text: Kuala Lumpur, Kuala Lumpur, Malaysia
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -2805,7 +2812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "310\xB0"
+  m_text: N/A
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -3229,7 +3236,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "27\xB0 C"
+  m_text: "26\xB0 C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
