@@ -34,10 +34,12 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "3.0.5",
+      "version": "3.0.6",
       "depth": 0,
       "source": "registry",
-      "dependencies": {},
+      "dependencies": {
+        "com.unity.ext.nunit": "1.0.6"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
@@ -97,7 +99,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.recorder": {
-      "version": "2.5.4",
+      "version": "2.5.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -148,7 +150,7 @@
       }
     },
     "com.unity.test-framework": {
-      "version": "1.1.22",
+      "version": "1.1.24",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -169,7 +171,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.textmeshpro": {
-      "version": "3.0.4",
+      "version": "3.0.6",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -178,7 +180,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.5.2",
+      "version": "1.5.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -218,30 +220,32 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.unity.visualeffectgraph": "10.3.2"
+        "com.unity.visualeffectgraph": "10.3.2",
+        "smartassistant.voxell.core": "0.1.0"
       }
     },
     "smartassistant.voxell.core": {
       "version": "file:smartassistant.core",
       "depth": 0,
       "source": "embedded",
-      "dependencies": {
-        "smartassistant.voxell.audio": "0.1.1"
-      }
+      "dependencies": {}
     },
     "smartassistant.voxell.speech": {
       "version": "file:smartassistant.speech",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "smartassistant.voxell.core": "0.1.0"
+        "smartassistant.voxell.core": "0.1.0",
+        "com.github.asus4.tflite": "2.4.1"
       }
     },
     "smartassistant.voxell.ux": {
       "version": "file:smartassistant.ux",
       "depth": 0,
       "source": "embedded",
-      "dependencies": {}
+      "dependencies": {
+        "smartassistant.voxell.core": "0.1.0"
+      }
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
